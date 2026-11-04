@@ -1,0 +1,4127 @@
+{
+  "_note": "すべての教材項目は草案(draft)。参考書の書誌情報は出版社・国立国会図書館の公開情報で確認済みだが、質問・ヒント本文と参考書の記述との対応、臨床内容の妥当性は未確認。文章は独自の言葉による再構成で、原文の転載ではない。",
+  "meta": {
+    "appName": "看護実習ナビ",
+    "subtitle": "アセスメントの思考を支える学習ツール",
+    "schemaVersion": 1,
+    "contentVersion": "0.2.20-draft",
+    "versionPolicy": "schemaVersion=データ構造の版。contentVersion=質問・項目など内容の版。利用者データにも両方を記録する。未公開の草案のため、実装前は互換性を保証しない。",
+    "status": "draft"
+  },
+  "structureNote": {
+    "stages": "思考過程の7段階。質問・ヒントに付けるタグであり、画面ではない。",
+    "steps": "画面の5STEP。1つのSTEPが複数のstageIdを含みうる。",
+    "questionCoverage": {
+      "topicQuestions": [
+        "collect",
+        "meaning",
+        "cause",
+        "forecast",
+        "direction"
+      ],
+      "commonOnly": [
+        "classify",
+        "problem"
+      ],
+      "note": "テーマごとの質問は5段階分。classify(分類・関連づけ)とproblem(看護問題の抽出)は項目別の質問を持たず、stagesの共通質問で補う。"
+    },
+    "basicInfoAndTopics": "基礎情報(概要)はテーマ画面から参照表示。テーマ画面は追加の観察・詳細を情報カードに記録する。参照関係は basicInfo.references に1か所でまとめ、提案扱い。"
+  },
+  "sources": [
+    {
+      "id": "src-vgn4",
+      "title": "看護がみえる vol.4 看護過程の展開",
+      "authors": [
+        "医療情報科学研究所(編)"
+      ],
+      "publisher": "メディックメディア",
+      "edition": "第1版",
+      "year": 2020,
+      "publishedDate": "2020-06-30",
+      "isbn": "978-4-89632-801-1",
+      "bibliographyVerified": true,
+      "verified": false,
+      "verificationNote": "書誌情報のみ確認済み。各質問・ヒントと本書の記述との対応、ページ番号、臨床内容の妥当性は未確認。",
+      "bibliographyUrls": [
+        "https://kango.medicmedia.com/books/kangogamieru4/",
+        "https://ndlsearch.ndl.go.jp/books/R100000002-I030448873"
+      ]
+    }
+  ],
+  "informantTypes": [
+    {
+      "id": "patient",
+      "label": "患者本人"
+    },
+    {
+      "id": "family",
+      "label": "家族など"
+    },
+    {
+      "id": "nurse",
+      "label": "看護師"
+    },
+    {
+      "id": "otherStaff",
+      "label": "他職種(医師・薬剤師・リハビリ職など)"
+    },
+    {
+      "id": "record",
+      "label": "カルテ・検査などの記録"
+    },
+    {
+      "id": "observed",
+      "label": "自分の観察・測定"
+    }
+  ],
+  "natureRules": {
+    "id": "nature-default",
+    "status": "draft",
+    "label": "仮の標準ルール",
+    "natures": [
+      {
+        "id": "S",
+        "label": "主観的情報"
+      },
+      {
+        "id": "O",
+        "label": "客観的情報"
+      }
+    ],
+    "suggestByInformant": {
+      "patient": "S",
+      "observed": "O",
+      "record": "O",
+      "family": null,
+      "nurse": null,
+      "otherStaff": null
+    },
+    "note": "情報源(informant)とS/O(nature)は、別々の項目として記録する。nullは提案なしで、学生が学校の記録ルールに合わせて選ぶ。学校ごとにルールを差し替えられる(schoolRules)。提案は確定ではなく、学生が変更できる。",
+    "schoolRules": []
+  },
+  "stages": [
+    {
+      "id": "collect",
+      "order": 1,
+      "label": "データ収集",
+      "questions": [
+        {
+          "id": "sq-collect-1",
+          "level": 1,
+          "text": "それぞれの情報は、誰から得たか(情報源)が分かる形で書けましたか?"
+        },
+        {
+          "id": "sq-collect-2",
+          "level": 1,
+          "text": "S/Oの分け方は、学校や実習先の記録ルールに合っていますか?"
+        }
+      ],
+      "questionScope": "topic+common",
+      "promptGuide": "本人の言葉・自分で観察した様子・測定値・記録を分けて確認します。分からないことは推測で埋めず「未確認」とします。"
+    },
+    {
+      "id": "meaning",
+      "order": 2,
+      "label": "データの意味づけ",
+      "questions": [
+        {
+          "id": "sq-meaning-1",
+          "level": 2,
+          "text": "その情報は、基準や以前の状態と比べてどうですか? そう考えた根拠は何ですか?"
+        },
+        {
+          "id": "sq-meaning-2",
+          "level": 2,
+          "text": "年齢・ADL・生活背景を考えると、どう読み取れそうですか? まだ足りない情報は何ですか?"
+        }
+      ],
+      "questionScope": "topic+common",
+      "promptGuide": "入院前や普段の状態、前回の値、基準となる情報と比べます。変化した点だけでなく、変わっていない点も確認します。"
+    },
+    {
+      "id": "classify",
+      "order": 3,
+      "label": "情報の分類・関連づけ",
+      "questions": [
+        {
+          "id": "sq-classify-1",
+          "level": 2,
+          "text": "関係していそうな情報同士を、まとめられますか? 共通点やくい違いは何ですか?"
+        },
+        {
+          "id": "sq-classify-2",
+          "level": 2,
+          "text": "その情報は、ほかの項目にも関係していそうですか?"
+        }
+      ],
+      "questionScope": "common",
+      "promptGuide": "同じ時期に起きていること、同時に変化していることを並べます。関係があると決めつけず、共通点・違い・不足情報を整理します。"
+    },
+    {
+      "id": "cause",
+      "order": 4,
+      "label": "原因・誘因・強み",
+      "questions": [
+        {
+          "id": "sq-cause-1",
+          "level": 2,
+          "text": "病気・治療・薬・年齢・ADL・生活背景の中に、関係していそうなものはありますか? 関係が薄そうなものも書いてみましょう。"
+        },
+        {
+          "id": "sq-cause-2",
+          "level": 2,
+          "focus": "strength",
+          "text": "本人ができていること、活かせる力、支えてくれる人は誰ですか?"
+        }
+      ],
+      "questionScope": "topic+common",
+      "promptGuide": "病気・治療・薬・年齢・動作・環境・気持ち・支援などを候補にします。「確認できた事実」と「自分の考え」を分け、根拠がないものは断定しません。"
+    },
+    {
+      "id": "forecast",
+      "order": 5,
+      "label": "なりゆきの予測",
+      "questions": [
+        {
+          "id": "sq-forecast-1",
+          "level": 3,
+          "text": "今の状態が続くと、どんな変化が起こりうるでしょう。根拠と、確かではない点も書きましょう。"
+        }
+      ],
+      "questionScope": "topic+common",
+      "promptGuide": "身体・生活・気持ちへの影響を考えます。「必ず起こる」ではなく「起こる可能性」として、そう考えた根拠と不確かな点を一緒に書きます。"
+    },
+    {
+      "id": "problem",
+      "order": 6,
+      "label": "看護問題の抽出",
+      "questions": [
+        {
+          "id": "sq-problem-1",
+          "level": 3,
+          "text": "気になる状態を、看護として関われる問題として言葉にできますか? 「{problemTypes}」のどれに近そうですか?"
+        },
+        {
+          "id": "sq-problem-2",
+          "level": 3,
+          "text": "その問題と考えた根拠と、関連する情報は何ですか?"
+        }
+      ],
+      "questionScope": "common",
+      "promptGuide": "気になる状態、根拠となる情報、関係しそうな要因をつなげます。病名をそのまま看護問題にせず、看護で関われることに注目します。"
+    },
+    {
+      "id": "direction",
+      "order": 7,
+      "label": "看護の方向性",
+      "questions": [
+        {
+          "id": "sq-direction-1",
+          "level": 3,
+          "text": "観察したいこと、追加で確認したい情報は何ですか?"
+        },
+        {
+          "id": "sq-direction-2",
+          "level": 3,
+          "text": "本人の強みや希望を活かすには、どんな関わりが考えられますか? 実際のケアは指導者・教員と相談して決めます。"
+        }
+      ],
+      "questionScope": "topic+common",
+      "promptGuide": "次に見ること・本人に聞くこと・記録で確認すること・指導者に相談することに分けます。実際の援助や報告の判断は指導者と確認します。"
+    }
+  ],
+  "steps": [
+    {
+      "id": "step1",
+      "order": 1,
+      "title": "現在、何が起きている?",
+      "stageIds": [
+        "collect"
+      ]
+    },
+    {
+      "id": "step2",
+      "order": 2,
+      "title": "基準や普段の状態と比べて、どう違う?",
+      "stageIds": [
+        "meaning"
+      ],
+      "previousTitle": "正常か、異常か?",
+      "titleSuggestion": true
+    },
+    {
+      "id": "step3",
+      "order": 3,
+      "title": "なぜ起きている?",
+      "stageIds": [
+        "classify",
+        "cause"
+      ]
+    },
+    {
+      "id": "step4",
+      "order": 4,
+      "title": "このままだと何が起きる?",
+      "stageIds": [
+        "forecast"
+      ]
+    },
+    {
+      "id": "step5",
+      "order": 5,
+      "title": "看護として何を見る?",
+      "stageIds": [
+        "problem",
+        "direction"
+      ],
+      "subScreens": [
+        {
+          "id": "step5a",
+          "label": "気になることを、看護問題として整理する",
+          "stageIds": [
+            "problem"
+          ],
+          "inputs": [
+            "問題の内容",
+            "問題の種類(problemTypesから選ぶ)",
+            "問題と考えた根拠",
+            "関連する情報",
+            "関連する原因・誘因",
+            "患者の強み",
+            "看護師が関われること"
+          ],
+          "emptyAllowed": true
+        },
+        {
+          "id": "step5b",
+          "label": "看護として何を見る?(観察・援助の方向)",
+          "stageIds": [
+            "direction"
+          ],
+          "inputs": [
+            "必要な観察項目",
+            "追加で収集する情報",
+            "必要な援助・ケア",
+            "強みを活かした援助",
+            "希望や価値観への配慮",
+            "他職種との連携が必要な事項"
+          ],
+          "emptyAllowed": true,
+          "linkToProblems": {
+            "optional": true,
+            "note": "5bの入力は、5aの看護問題と任意に結びつけられる。"
+          }
+        }
+      ],
+      "subtitle": "看護問題の整理と、観察・援助の方向",
+      "progress": {
+        "segments": 5,
+        "inside": "5a→5b をSTEP5の中だけで示す",
+        "note": "看護問題が0件でも5bへ進める。"
+      }
+    }
+  ],
+  "flow": {
+    "status": "draft",
+    "order": [
+      "home",
+      "frameworkSelect",
+      "basicInfo",
+      "step1",
+      "step2",
+      "step3",
+      "step4",
+      "step5",
+      "summary"
+    ],
+    "groups": {
+      "prepare": [
+        "frameworkSelect",
+        "basicInfo"
+      ],
+      "steps": [
+        "step1",
+        "step2",
+        "step3",
+        "step4",
+        "step5"
+      ],
+      "review": [
+        "summary"
+      ]
+    },
+    "progressBar": {
+      "segments": [
+        "step1",
+        "step2",
+        "step3",
+        "step4",
+        "step5"
+      ],
+      "excludes": [
+        "home",
+        "frameworkSelect",
+        "basicInfo",
+        "summary"
+      ]
+    },
+    "screens": [
+      {
+        "id": "home",
+        "label": "ホーム",
+        "group": "start",
+        "noticeIds": [
+          "n-storage"
+        ]
+      },
+      {
+        "id": "frameworkSelect",
+        "label": "枠組みの選択",
+        "group": "prepare",
+        "required": false,
+        "canSkipToStep1": true,
+        "switchLater": "STEP1の見出しから切り替えられる"
+      },
+      {
+        "id": "basicInfo",
+        "label": "基礎情報",
+        "group": "prepare",
+        "required": false,
+        "canSkipToStep1": true,
+        "editableFrom": [
+          "step1",
+          "step2",
+          "step3",
+          "step4",
+          "step5",
+          "summary"
+        ],
+        "note": "各STEPの参照表示から「編集」で開ける。"
+      },
+      {
+        "id": "summary",
+        "label": "まとめ(ふりかえり)",
+        "group": "review",
+        "copy": true,
+        "firstShown": [
+          "未入力・未確認の一覧",
+          "提出用の記録ではないという注意"
+        ],
+        "noticeIds": [
+          "n-confirm",
+          "n-storage"
+        ]
+      }
+    ],
+    "specScreenMap": {
+      "新規アセスメント作成": "home",
+      "分類枠組み選択": "frameworkSelect",
+      "基礎情報入力": "basicInfo",
+      "情報収集・分類": "step1",
+      "データの解釈": "step2",
+      "情報の整理・関連づけ": "step3",
+      "原因・誘因・強みの分析": "step3",
+      "なりゆきの予測": "step4",
+      "看護問題の検討": "step5a",
+      "援助の方向性": "step5b",
+      "アセスメントまとめ": "summary"
+    }
+  },
+  "displayRules": {
+    "status": "draft",
+    "roles": {
+      "stageQuestions": "全体への問い",
+      "topicQuestions": "個別(枠組みの項目)への問い"
+    },
+    "stageQuestions": {
+      "where": "STEP画面の上",
+      "times": "各STEPで1回だけ"
+    },
+    "topicQuestions": {
+      "where": "枠組みの項目を開いたとき",
+      "filter": "いま開いているSTEPの stageIds に含まれる stageId の質問だけ",
+      "note": "forecastはSTEP4、directionは5bで、テーマ(項目)ごとにまとめて表示する。classifyとproblemにはテーマ別の質問がない。"
+    },
+    "levelRule": {
+      "rule": "同じ段階に複数の質問があるときだけ、levelの小さい順に1つずつ開く。段階が違う質問はSTEPで分かれるので、levelでは並べない。",
+      "currentMapping": {
+        "collect": 1,
+        "meaning": 2,
+        "cause": 2,
+        "forecast": 3,
+        "direction": 3
+      }
+    },
+    "hints": {
+      "display": "collapsed",
+      "byType": {
+        "collectHints": {
+          "stageId": "collect",
+          "stepId": "step1"
+        },
+        "interpretHints": {
+          "stageId": "meaning",
+          "stepId": "step2"
+        },
+        "extras.fulfilled": {
+          "stageId": "meaning",
+          "stepId": "step2"
+        },
+        "strengthHints": {
+          "stageId": "cause",
+          "stepId": "step3"
+        },
+        "extras.considerFactors": {
+          "stageId": "cause",
+          "stepId": "step3"
+        }
+      }
+    },
+    "frameworkSpecific": {
+      "parts": [
+        "ownQuestions",
+        "extras"
+      ],
+      "display": "項目内に「ゴードンの視点」「ヘンダーソンの視点」として表示"
+    },
+    "sensitive": {
+      "collapsedByDefault": true,
+      "appliesTo": "sensitivity が sensitive のテーマ・項目・参照"
+    }
+  },
+  "topics": [
+    {
+      "id": "t-breathing",
+      "label": "呼吸",
+      "summary": "呼吸の状態と、動いたときの息や脈の反応。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "息苦しさ・咳・痰についての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "動いたときの息の感じ方についての言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "呼吸の回数・深さ・リズム、SpO2",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "咳や痰、呼吸音の様子",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "酸素や吸入薬を使ったときの息の変化",
+          "informant": "observed",
+          "suggestedNature": "O",
+          "refersBasicInfo": [
+            "bi.treatment",
+            "bi.medication"
+          ]
+        },
+        {
+          "t": "呼吸時の肩や首の筋肉の動き、鼻翼呼吸など努力している様子",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "呼吸が楽になる姿勢や、横になる・動くことでの変化",
+          "informant": "patient",
+          "suggestedNature": "S"
+        }
+      ],
+      "interpretHints": [
+        "安静時と動いたときで差があるか",
+        "以前の様子と比べてどうか",
+        "数値は症状や様子と合わせて見る",
+        "呼吸数やSpO2だけで判断せず、呼吸の仕方・姿勢・表情などと合わせて見る"
+      ],
+      "strengthHints": [
+        "自分でできる呼吸の工夫",
+        "吸入薬など自己管理の経験"
+      ],
+      "questions": [
+        {
+          "id": "q-breathing-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "呼吸の回数・深さ・SpO2や、息苦しさの訴えは、どうなっていますか?"
+        },
+        {
+          "id": "q-breathing-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "安静時と動いたとき、また以前の様子と比べて、何が言えそうですか?"
+        },
+        {
+          "id": "q-breathing-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "息の状態に関係していそうな病気・治療・薬・環境は何でしょう?"
+        },
+        {
+          "id": "q-breathing-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "今の呼吸の状態のまま動いたり眠ったりすると、息や体への負担は、どう変わりうるでしょう。理由も考えましょう。"
+        },
+        {
+          "id": "q-breathing-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "呼吸について、次に観察したい点は何ですか? 数値のほかに、本人に確認したいことはありますか?"
+        }
+      ]
+    },
+    {
+      "id": "t-nutrition",
+      "label": "食事・水分・栄養",
+      "summary": "食事と水分の取れ方と、体がそれをどう使えているか。口の中や皮膚の様子も関係する。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "食欲・好み・食べにくさについての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "食べ方や間食の習慣についての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "食事・水分の摂取量(割合や回数)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "体重の変化、口の中の様子",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "検査データ(複数をまとめて見る)",
+          "informant": "record",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "家族から聞いた、普段の食べ方の具体的な様子",
+          "informant": "family",
+          "suggestedNature": null,
+          "refersBasicInfo": [
+            "bi.lifestyle"
+          ]
+        },
+        {
+          "t": "飲み込みにくさ、むせ、食事中の咳などについての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "悪心・嘔吐、腹部不快感など、食事や水分摂取に影響する症状",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "食事中・食後のむせ、咳、声の変化、口腔内に食物が残る様子など(観察できた場合)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "必要量に対して取れている量はどうか",
+        "入院前と比べて何が変わったか",
+        "検査値は1つで決めず、体重・摂取量・症状と合わせて見る",
+        "摂取量だけでなく、飲み込みにくさや悪心など摂取を妨げる症状も確認する",
+        "嚥下に関する情報は、食事形態・姿勢・食べる速さ・食事中や食後の様子と合わせて整理し、学生だけで嚥下の安全性を判断しない"
+      ],
+      "strengthHints": [
+        "自分で食べられる部分",
+        "好きな食べ物や、食事への前向きな気持ち"
+      ],
+      "questions": [
+        {
+          "id": "q-nutrition-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "食事と水分は、どのくらい、どんなふうに取れていますか?"
+        },
+        {
+          "id": "q-nutrition-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "入院前との変化や、体重・摂取量・検査データを合わせると、何が言えそうですか?"
+        },
+        {
+          "id": "q-nutrition-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "食べにくさや食欲に関係していそうな病気・治療・薬・生活は何でしょう?"
+        },
+        {
+          "id": "q-nutrition-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "食事と水分の取れ方が続くと、体力・体重・回復に、どんな影響が出うるでしょう。理由も考えましょう。"
+        },
+        {
+          "id": "q-nutrition-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "食事と水分について、記録で確認できることと、本人・家族に聞きたいことを、それぞれ書きましょう。"
+        }
+      ]
+    },
+    {
+      "id": "t-elimination",
+      "label": "排泄",
+      "summary": "尿と便の出方(回数・量・性状)と、排泄にまつわる動作や不快感。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "排尿・排便での困りごとや痛みについての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "排泄の習慣や、薬を使う理由についての言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "尿意・便意の切迫感、失禁、夜間の排泄、排泄時の痛み・違和感についての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "回数・量・性状(尿の色、便の硬さなど)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "排尿・排便の回数や量の変化、失禁の有無、腹部の張りなど確認できた様子(該当する場合)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "下剤・利尿薬などを使った後の、排泄の変化",
+          "informant": "observed",
+          "suggestedNature": "O",
+          "refersBasicInfo": [
+            "bi.medication"
+          ]
+        },
+        {
+          "t": "カテーテルやストーマの管理の様子(困りごと・本人の対応)",
+          "informant": "observed",
+          "suggestedNature": "O",
+          "refersBasicInfo": [
+            "bi.treatment"
+          ]
+        },
+        {
+          "t": "トイレまでの動作と介助の必要度",
+          "informant": "observed",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "入院前の習慣と比べて変化はあるか",
+        "食事・水分・動きとの関係はどうか",
+        "不快感が生活にどう影響しているか",
+        "尿・便それぞれについて、回数・量・性状と、切迫感・失禁・夜間排泄・痛みなどの症状を分けて整理する",
+        "導尿カテーテル・ストーマ・失禁用品などがある場合は、使用状況や本人の困りごと、施設での管理方法も確認する"
+      ],
+      "strengthHints": [
+        "排泄の習慣を自分で整えられること",
+        "トイレまでの動作で自分でできる部分"
+      ],
+      "questions": [
+        {
+          "id": "q-elimination-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "排尿・排便の回数・量・性状や、排泄時の困りごとはどうですか?"
+        },
+        {
+          "id": "q-elimination-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "入院前の排泄習慣と比べて、変化はありますか?"
+        },
+        {
+          "id": "q-elimination-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "排泄の変化に関係していそうな病気・手術・薬・食事・水分・動きは何でしょう?"
+        },
+        {
+          "id": "q-elimination-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "もし排泄の困りごとが続いたら、睡眠・活動・気持ちのうち、どこから影響が出そうですか?"
+        },
+        {
+          "id": "q-elimination-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "排泄について、次に確認したいことは何ですか? 本人に聞くことと、記録で確認することに分けてみましょう。"
+        }
+      ]
+    },
+    {
+      "id": "t-activity",
+      "label": "活動・動き",
+      "summary": "体の動かし方・姿勢・日常生活動作と、活動したときの体の反応。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "動くときの不安・痛み・疲れについての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "できるようになりたいことについての言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "歩行・移乗・姿勢の様子と、介助の必要度",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "関節の動き・筋力・麻痺の有無",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "浮腫・皮膚色・四肢の冷感など、末梢循環に関係する観察所見",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "動悸・胸部不快感・めまい・息切れなど、循環や活動に関係する本人の訴え",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "安静度などの指示",
+          "informant": "record",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "入院前の動き方の具体的な様子",
+          "informant": "family",
+          "suggestedNature": null,
+          "refersBasicInfo": [
+            "bi.adl"
+          ]
+        },
+        {
+          "t": "脈拍の回数・リズム、動悸の有無や出現する場面(確認できる範囲で)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "立ち上がりや体位変換に伴うふらつき・気分不快、必要時の体位による血圧変化(測定の必要性・方法は指導者や施設の指示に従う)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "安静時・活動前後の脈拍・血圧・SpO2の変化(必要性と測定方法は施設・指導者の指示に従う)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "入院前と比べて自立度はどう変わったか",
+        "動きにくさの要因は1つとは限らない",
+        "活動前後の数値の変化と、動悸・息切れ・めまいなど本人の訴えが一致しているか。数値だけで安全と判断しない",
+        "脈拍・血圧などは安静時と活動時、本人の普段の状態や経過と比べ、症状・皮膚の様子と合わせて見る",
+        "浮腫や四肢の冷感などは、左右差・部位・出現時期・変化を確認し、単独で原因を決めつけない",
+        "脈拍の回数・リズム、体位変換時の症状や血圧変化は、必要性がある場合に指導者・施設の指示のもとで確認し、単独の値だけで判断しない",
+        "胸部不快感・急な息切れ・強いめまい・冷汗・意識や反応の変化などがあれば、学生だけで判断・観察を続けず、直ちに指導者・担当看護師へ報告する"
+      ],
+      "strengthHints": [
+        "残っている動き・できる動作",
+        "リハビリや回復への意欲"
+      ],
+      "questions": [
+        {
+          "id": "q-activity-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "移動・姿勢・日常生活動作に加え、安静時や活動時の体の反応はどうなっていますか?"
+        },
+        {
+          "id": "q-activity-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "入院前と比べて、動き方や介助の必要度、脈拍・血圧や自覚症状にどんな変化がありますか?"
+        },
+        {
+          "id": "q-activity-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "動きにくさや循環の変化に関係していそうな病気・治療・薬・水分状態・環境・気持ちは何でしょう?"
+        },
+        {
+          "id": "q-activity-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "今の動き方や体の反応が続いた場合、活動耐容能や日常生活にどんな影響が起こりうるでしょう。根拠も考えましょう。"
+        },
+        {
+          "id": "q-activity-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "安全に動くために、次に観察したい動作・バイタルサイン・症状は何ですか? 変化があったとき誰に報告・相談しますか?"
+        }
+      ]
+    },
+    {
+      "id": "t-sleep",
+      "label": "睡眠・休息",
+      "summary": "睡眠の時間と質、休息やリラックスができているか。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "眠れなさ・熟睡感についての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "眠りを妨げているものについての言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "就寝・起床時間と、途中で目が覚める様子",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "睡眠薬などを使った後の、眠りの様子",
+          "informant": "observed",
+          "suggestedNature": "O",
+          "refersBasicInfo": [
+            "bi.medication"
+          ]
+        },
+        {
+          "t": "日中の眠気や表情",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "夜間の様子",
+          "informant": "nurse",
+          "suggestedNature": null
+        }
+      ],
+      "interpretHints": [
+        "入院前の睡眠と比べてどうか",
+        "眠りを妨げうる要因(痛み・環境・気持ち・症状)は複数ありうる",
+        "日中の様子はどうか"
+      ],
+      "strengthHints": [
+        "眠りやすくなる本人なりの方法",
+        "休息のとり方の工夫"
+      ],
+      "questions": [
+        {
+          "id": "q-sleep-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "睡眠時間や眠りの質(途中で目が覚める等)はどうですか?"
+        },
+        {
+          "id": "q-sleep-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "入院前と比べて、睡眠や休息にどんな変化がありますか?"
+        },
+        {
+          "id": "q-sleep-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "眠りに影響していそうな症状・環境・気持ちは何でしょう?"
+        },
+        {
+          "id": "q-sleep-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "眠りの状態が続いたら、日中の様子や回復は、どう変わりそうですか?"
+        },
+        {
+          "id": "q-sleep-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "夜間の睡眠の様子を、誰(本人・夜勤の看護師・記録)から確認できそうですか? 次に聞きたいことも書きましょう。"
+        }
+      ]
+    },
+    {
+      "id": "t-dressing",
+      "label": "更衣・衣類",
+      "summary": "衣類を選び、着替えること。気候や好み、体の動かし方との関係。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "着替えのしにくさや、衣類の好みについての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "着替え動作の様子と介助の必要度",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "麻痺・関節の動き・点滴などによる制限",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "季節や室温に合う衣類か",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "普段の着こなしや好み",
+          "informant": "family",
+          "suggestedNature": null
+        }
+      ],
+      "interpretHints": [
+        "入院前と比べてどうか",
+        "動作のどこで困っているか",
+        "本人の好みが反映されているか"
+      ],
+      "strengthHints": [
+        "自分でできる更衣の動作",
+        "着たい服へのこだわりや工夫"
+      ],
+      "questions": [
+        {
+          "id": "q-dressing-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "衣類の選択と着替えは、ご自身でどの程度できていますか?"
+        },
+        {
+          "id": "q-dressing-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "入院前と比べて、着替えの様子はどう変わっていますか?"
+        },
+        {
+          "id": "q-dressing-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "着替えにくさに関係していそうな動き・治療・気持ちは何でしょう?"
+        },
+        {
+          "id": "q-dressing-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "着替えの困りごとが続いたとき、清潔・活動・気持ちのうち、影響しやすいのはどれでしょう。理由も考えましょう。"
+        },
+        {
+          "id": "q-dressing-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "着替えについて、本人の好みと動きの両方から、次に確認したいことは何ですか?"
+        }
+      ]
+    },
+    {
+      "id": "t-temperature",
+      "label": "体温",
+      "summary": "体温の推移と、暑さ・寒さの感じ方、室温や寝具の調整。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "寒気・ほてり・汗についての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "体温の測定値と推移",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "発汗・悪寒・皮膚の温かさ",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "室温・寝具・衣類の状況",
+          "informant": "observed",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "基準は資料や施設で異なる",
+        "1回の値でなく推移で見る",
+        "ほかの症状との組み合わせで見る"
+      ],
+      "strengthHints": [
+        "寒さ暑さを自分で伝え、調整できること"
+      ],
+      "questions": [
+        {
+          "id": "q-temperature-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "体温の測定値と、寒気・ほてり・汗の様子はどうですか?"
+        },
+        {
+          "id": "q-temperature-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "体温の推移やほかの症状を合わせると、何が言えそうですか?"
+        },
+        {
+          "id": "q-temperature-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "体温の変化には、どんな病気の経過や治療、室温・寝具の状況が関わっていそうですか?"
+        },
+        {
+          "id": "q-temperature-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "体温の変化が続くと、食事・水分・休息に、どんな影響が出うるでしょう。"
+        },
+        {
+          "id": "q-temperature-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "体温について、次に測る・観察するタイミングと、報告・相談の目安を誰に確認するかを書きましょう。"
+        }
+      ]
+    },
+    {
+      "id": "t-hygiene",
+      "label": "清潔・皮膚",
+      "summary": "体・髪・口の中の清潔と、皮膚や粘膜の状態。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "かゆみ・痛みや、入浴・洗髪の希望についての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "清潔行動の様子と介助の必要度",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "皮膚・粘膜の色、乾燥、傷など",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "褥瘡などのリスク評価(使うスケールは資料や施設による)",
+          "informant": "record",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "口の中の汚れや乾き",
+          "informant": "observed",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "入院前の習慣と比べてどうか",
+        "皮膚の状態と、栄養・動き・湿り気との関係はどうか"
+      ],
+      "strengthHints": [
+        "自分でできる清潔行動",
+        "身だしなみへの関心"
+      ],
+      "questions": [
+        {
+          "id": "q-hygiene-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "清潔の保ち方と、皮膚・粘膜の状態はどうですか?"
+        },
+        {
+          "id": "q-hygiene-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "入院前の習慣と比べて、清潔行動や皮膚の様子に変化はありますか?"
+        },
+        {
+          "id": "q-hygiene-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "皮膚や清潔の状態に関係していそうな動き・栄養・治療・環境は何でしょう?"
+        },
+        {
+          "id": "q-hygiene-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "皮膚や口の中の状態が今のまま続くと、どんな変化が起こりうるでしょう。"
+        },
+        {
+          "id": "q-hygiene-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "皮膚と清潔について、次に観察したい部位と、観察の方法を誰に確認するかを書きましょう。"
+        }
+      ]
+    },
+    {
+      "id": "t-safety",
+      "label": "安全",
+      "summary": "転倒・転落・感染・医療機器など、安全にかかわること。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "動くときの不安や怖さについての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "転倒・転落などのリスク評価の結果",
+          "informant": "record",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "点滴・ドレーンなど管類の状況",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "見当識・視力・聴力の様子",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "病室の環境(ベッド周り・照明など)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "過去の転倒歴",
+          "informant": "family",
+          "suggestedNature": null
+        },
+        {
+          "t": "発熱・発赤・腫脹・疼痛・排液など、感染に関連して気づいた変化(該当する部位や状況に応じて)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "感染予防に関する指示や実施状況(手指衛生・必要な予防策など)",
+          "informant": "record",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "動き・認知・治療・環境を合わせて見る",
+        "安全を守ることが、過剰な制限になっていないか",
+        "感染に関する情報は、部位・状況・経過と合わせ、施設の指示や指導者の確認のもとで整理する",
+        "転倒・転落、感染、点滴・ドレーンなど管類の事故は、別々のリスクとして情報・要因・予防策を整理する"
+      ],
+      "strengthHints": [
+        "危険に気づき、ナースコールで助けを求められること"
+      ],
+      "questions": [
+        {
+          "id": "q-safety-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "転倒・転落・感染・管類など、安全にかかわる情報は何がありますか?"
+        },
+        {
+          "id": "q-safety-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "動き・認知・治療・環境を合わせると、どんな場面で注意が必要そうですか?"
+        },
+        {
+          "id": "q-safety-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "安全に影響しそうな、本人側・環境側の要因は何でしょう?"
+        },
+        {
+          "id": "q-safety-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "今の環境と動き方のままだと、どんな場面で、どんな事故や困りごとが起こりうるでしょう。"
+        },
+        {
+          "id": "q-safety-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "安全を守りつつ、動きを制限しすぎないために、何を確認し、誰に相談しますか?"
+        }
+      ]
+    },
+    {
+      "id": "t-cognition",
+      "label": "感覚・認知・痛み",
+      "summary": "見る・聞く・感じる力、意識や記憶・理解、痛みや不快感。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "見えにくさ・聞こえにくさ・物忘れについての言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "意識の状態・見当識・会話の様子",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "視力・聴力など感覚の様子",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "表情・動作・発声など、痛みに伴って観察できた反応(本人の訴えや痛みの評価とは分けて記録)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "普段との違い",
+          "informant": "family",
+          "suggestedNature": null
+        },
+        {
+          "t": "痛みの部位・性質・始まった時期・持続時間・強さ(本人による評価尺度を用いる場合はその回答)・増悪／軽減することと、生活への影響",
+          "informant": "patient",
+          "suggestedNature": "S"
+        }
+      ],
+      "interpretHints": [
+        "入院前や普段と比べた変化はあるか",
+        "理解や意思決定の様子はどうか",
+        "痛みは強さだけでなく、部位・性質・経過・増悪／軽減要因と、睡眠・活動・食事・気持ちへの影響を合わせて見る"
+      ],
+      "strengthHints": [
+        "本人なりの痛みへの対処や伝え方",
+        "保たれている理解や記憶の力"
+      ],
+      "questions": [
+        {
+          "id": "q-cognition-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "感覚・意識・記憶・理解の様子と、痛みや不快感はどうですか?"
+        },
+        {
+          "id": "q-cognition-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "入院前や普段と比べて、変化はありますか?"
+        },
+        {
+          "id": "q-cognition-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "感覚・認知・痛みに関係していそうな病気・治療・年齢・環境は何でしょう?"
+        },
+        {
+          "id": "q-cognition-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "痛みや認知の状態が続いたとき、眠り・動き・人との関わりに、どんな影響が考えられますか?"
+        },
+        {
+          "id": "q-cognition-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "感覚・認知・痛みについて、次に観察したい点と、本人の言葉で確認したいことは何ですか?"
+        }
+      ]
+    },
+    {
+      "id": "t-communication",
+      "label": "コミュニケーション",
+      "summary": "気持ちや希望を伝えること、人とのやりとり。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "伝えたいことや、話したくない気持ちについての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "話し方・表情・視線・声の調子",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "聞こえ・見え・言葉の出にくさ",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "家族や周囲とのやりとりの様子",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "意思疎通の工夫(筆談など)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "伝わっていると考えた根拠は何か",
+        "意思疎通を妨げうる要因は複数ありうる",
+        "本人らしい伝え方はどんなものか"
+      ],
+      "strengthHints": [
+        "筆談やジェスチャーなど、伝える工夫",
+        "人と交流しようとする気持ち"
+      ],
+      "questions": [
+        {
+          "id": "q-communication-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "気持ちや希望を、言葉や表情でどのように伝えていますか?"
+        },
+        {
+          "id": "q-communication-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "入院前や普段と比べて、やりとりの様子に変化はありますか?"
+        },
+        {
+          "id": "q-communication-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "意思疎通に関係していそうな感覚・言葉・気持ち・環境は何でしょう?"
+        },
+        {
+          "id": "q-communication-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "気持ちが伝わりにくい状態が続いたら、治療や周囲との関係に、どんな影響が出そうですか?"
+        },
+        {
+          "id": "q-communication-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "安心して気持ちを伝えてもらうために、次に確認したいことと、関わるときに気をつけたい点は何ですか?"
+        }
+      ]
+    },
+    {
+      "id": "t-understanding",
+      "label": "健康の理解・管理・学習",
+      "summary": "病気や治療をどう受け止め、どう理解し、日々の健康管理をどうしてきたか。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "病気や治療についての理解や思いの言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "知りたいことや心配についての言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "服薬・通院・食事など健康管理の習慣についての言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "服薬・通院・治療指示の実行状況",
+          "informant": "record",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "説明を受けたときの反応や質問の内容",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "喫煙・飲酒などの習慣の具体的な様子",
+          "informant": "family",
+          "suggestedNature": null,
+          "refersBasicInfo": [
+            "bi.lifestyle"
+          ]
+        }
+      ],
+      "interpretHints": [
+        "本人の理解と、医療者の説明にずれはないか",
+        "これまでの健康管理の仕方が今にどう関わるか",
+        "一般論を本人にそのまま当てはめない"
+      ],
+      "strengthHints": [
+        "知りたい・学びたい気持ち",
+        "これまでの健康管理の経験"
+      ],
+      "questions": [
+        {
+          "id": "q-understanding-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "病気や治療を、本人はどのように理解し、どう受け止めていますか?"
+        },
+        {
+          "id": "q-understanding-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "これまでの健康管理の様子と、今の理解を比べると、何が言えそうですか?"
+        },
+        {
+          "id": "q-understanding-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "理解や健康管理に関係していそうな知識・体調・生活・気持ち・支援は何でしょう?"
+        },
+        {
+          "id": "q-understanding-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "今の理解や健康管理のまま退院すると、どんな困りごとが起こりうるでしょう。"
+        },
+        {
+          "id": "q-understanding-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "本人が知りたいことや大切にしたいことを踏まえ、理解していることと、さらに確認したいことは何ですか?"
+        }
+      ]
+    },
+    {
+      "id": "t-self",
+      "label": "自己認識・自己概念",
+      "summary": "自分の体や能力、これまでの生き方をどう捉えているか。気持ちの状態。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "自分への見方・自信・不安についての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "表情・姿勢・声の調子・話の内容",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "体の変化(傷・機能の変化)への反応",
+          "informant": "observed",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "表情や言動は手がかり。気持ちは決めつけず、本人に確認する",
+        "病気・治療・役割の変化の前後で比べる"
+      ],
+      "strengthHints": [
+        "自分の良いところとして話せること",
+        "これまで乗り越えた経験"
+      ],
+      "questions": [
+        {
+          "id": "q-self-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "ご自身の体や生き方を、本人はどう捉えていると話していますか?"
+        },
+        {
+          "id": "q-self-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "病気や治療による体や生活の変化を、本人はどう受け止めていそうですか?"
+        },
+        {
+          "id": "q-self-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "自分への見方に影響していそうな出来事や関係は何でしょう?"
+        },
+        {
+          "id": "q-self-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "今の受け止め方が続いた場合、気持ちや治療への向き合い方は、どう変わりうるでしょう。"
+        },
+        {
+          "id": "q-self-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "表情や言動で気づいたことのうち、本人に確認したいことは何ですか?"
+        }
+      ]
+    },
+    {
+      "id": "t-role",
+      "label": "役割・人間関係・仕事",
+      "summary": "家庭・仕事・地域での役割と、人とのつながり、支えてくれる人。",
+      "sensitivity": "sensitive",
+      "collectHints": [
+        {
+          "t": "仕事や家のことについての気がかりや希望の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "経済面や復帰についての心配の言葉(金額など具体的には書かない)",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "面会の様子や、家族から受けている具体的な支援",
+          "informant": "family",
+          "suggestedNature": null,
+          "refersBasicInfo": [
+            "bi.familySupport"
+          ]
+        },
+        {
+          "t": "仕事や役割の状況",
+          "informant": "record",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "入院前後での役割の変化",
+          "informant": "observed",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "入院で役割がどう変わったか",
+        "支えとなる人や資源は誰か",
+        "達成感を感じられる活動は何か"
+      ],
+      "strengthHints": [
+        "支えてくれる家族や周囲の人",
+        "役割への思いや復帰への意欲"
+      ],
+      "questions": [
+        {
+          "id": "q-role-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "家庭・仕事・地域でどんな役割があり、支えてくれる人は誰ですか?"
+        },
+        {
+          "id": "q-role-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "入院前と比べて、役割や人間関係にどんな変化がありますか?"
+        },
+        {
+          "id": "q-role-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "役割や関係に影響していそうな病気・治療・生活の事情は何でしょう?"
+        },
+        {
+          "id": "q-role-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "療養が続くと、仕事・家庭・人間関係に、どんな変化が考えられますか?"
+        },
+        {
+          "id": "q-role-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "本人の役割や達成感を支えるために、次に確認したいことは何ですか?"
+        }
+      ]
+    },
+    {
+      "id": "t-sexuality",
+      "label": "性・生殖",
+      "summary": "性や生殖に関する健康、パートナーとの関係、体の変化への思い。必要なときだけ、本人の意思を尊重して扱う。",
+      "sensitivity": "sensitive",
+      "collectHints": [
+        {
+          "t": "本人が話したときのみ:性や生殖、体の変化についての気がかりの言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "関連する病気や治療についての記録",
+          "informant": "record",
+          "suggestedNature": "O",
+          "refersBasicInfo": [
+            "bi.ageGroup",
+            "bi.sex",
+            "bi.pastHistory"
+          ]
+        },
+        {
+          "t": "話題にした際の表情・声の調子・反応など、実際に観察した様子(意味づけを決めつけない)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "必要性がある場合のみ収集する",
+        "本人の羞恥心とプライバシーに配慮する",
+        "病気・治療との関連を断定しない"
+      ],
+      "strengthHints": [
+        "本人が安心して話せる相手や場面(本人の意思を尊重)"
+      ],
+      "questions": [
+        {
+          "id": "q-sexuality-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "必要性がある場合に、本人が話してくれた範囲で、気がかりなことはありますか?"
+        },
+        {
+          "id": "q-sexuality-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "病気や治療による体の変化は、本人にとってどんな意味を持っていそうですか?"
+        },
+        {
+          "id": "q-sexuality-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "関係していそうな病気・治療・ライフステージは何でしょう?"
+        },
+        {
+          "id": "q-sexuality-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "気がかりが続いたとき、気持ちや周囲との関係に、どんな影響が考えられるでしょう。"
+        },
+        {
+          "id": "q-sexuality-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "プライバシーに配慮して、誰に・どう確認するのが適切でしょう。指導者・教員に相談しましょう。"
+        }
+      ]
+    },
+    {
+      "id": "t-coping",
+      "label": "ストレスへの対処",
+      "summary": "ストレスの感じ方、対処の仕方、頼れる人や支え。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "今感じているストレスや不安、うまくいった対処についての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "ストレスに伴う体や行動の変化(眠れない・食欲など)",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "最近の生活の大きな変化",
+          "informant": "family",
+          "suggestedNature": null
+        },
+        {
+          "t": "頼れる人や相談先",
+          "informant": "record",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "対処法が健康に与える影響は、一面だけで判断しない",
+        "過去に役立った対処法は何か"
+      ],
+      "strengthHints": [
+        "これまで役に立った対処法",
+        "相談できる人"
+      ],
+      "questions": [
+        {
+          "id": "q-coping-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "どんなストレスや不安があり、普段どう対処していますか?"
+        },
+        {
+          "id": "q-coping-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "これまでの対処法は、今の状況でどう働いていそうですか?"
+        },
+        {
+          "id": "q-coping-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "ストレスに関係していそうな出来事・病気・生活の変化は何でしょう?"
+        },
+        {
+          "id": "q-coping-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "ストレスが続くと、体調・眠り・療養生活に、どんな影響が出うるでしょう。"
+        },
+        {
+          "id": "q-coping-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "本人の対処する力を活かすために、誰に・何を確認したいですか?"
+        }
+      ]
+    },
+    {
+      "id": "t-values",
+      "label": "価値観・信念・信仰",
+      "summary": "本人が大切にしている価値観・信念・信仰と、それが生活や治療の選択にどう関わるか。",
+      "sensitivity": "sensitive",
+      "collectHints": [
+        {
+          "t": "大切にしていること・譲れないこと・望む生活についての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "信仰や日々の習慣についての言葉(本人が話したとき)",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "信仰に関する習慣・持ち物・生活上の配慮",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "家族から聞いた、本人の価値観",
+          "informant": "family",
+          "suggestedNature": null
+        }
+      ],
+      "interpretHints": [
+        "本人の言葉をそのまま尊重して受け取る",
+        "治療や療養の選択との関わりを考える",
+        "一般論を本人に当てはめない"
+      ],
+      "strengthHints": [
+        "大切にしている信念が心の支えになっていること"
+      ],
+      "questions": [
+        {
+          "id": "q-values-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "本人が大切にしていることや、譲れないことは何ですか?"
+        },
+        {
+          "id": "q-values-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "その価値観は、治療や療養の選択にどう関わっていそうですか?"
+        },
+        {
+          "id": "q-values-3",
+          "stageId": "cause",
+          "level": 2,
+          "focus": "strength",
+          "text": "その価値観を形づくっている経験や、支えになっているものは何でしょう?"
+        },
+        {
+          "id": "q-values-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "大切にしたいことが守りにくい状態が続くと、気持ちや治療への向き合い方にどんな変化が出うるでしょう。"
+        },
+        {
+          "id": "q-values-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "本人の信念や希望が、治療や療養の選択でどう尊重されているか、誰に確認できそうですか?"
+        }
+      ]
+    },
+    {
+      "id": "t-leisure",
+      "label": "余暇・気分転換",
+      "summary": "遊び・趣味・気分転換と、楽しみの時間。",
+      "sensitivity": "normal",
+      "collectHints": [
+        {
+          "t": "好きなことや、退屈・気晴らしについての本人の言葉",
+          "informant": "patient",
+          "suggestedNature": "S"
+        },
+        {
+          "t": "病室での過ごし方・気晴らしへの参加",
+          "informant": "observed",
+          "suggestedNature": "O"
+        },
+        {
+          "t": "趣味や楽しみ",
+          "informant": "family",
+          "suggestedNature": null
+        },
+        {
+          "t": "疲れや痛みによる制限",
+          "informant": "observed",
+          "suggestedNature": "O"
+        }
+      ],
+      "interpretHints": [
+        "入院前の楽しみと比べてどうか",
+        "制限している要因は1つとは限らない",
+        "気分転換が体調や気持ちにどう関わるか"
+      ],
+      "strengthHints": [
+        "続けられる趣味や気分転換",
+        "楽しみにしていること"
+      ],
+      "questions": [
+        {
+          "id": "q-leisure-1",
+          "stageId": "collect",
+          "level": 1,
+          "text": "好きなことや気分転換の方法は何ですか? 今どのくらいできていますか?"
+        },
+        {
+          "id": "q-leisure-2",
+          "stageId": "meaning",
+          "level": 2,
+          "text": "入院前と比べて、楽しみの時間はどう変わっていますか?"
+        },
+        {
+          "id": "q-leisure-3",
+          "stageId": "cause",
+          "level": 2,
+          "text": "楽しみの時間を減らしていそうなものは何でしょう。体調・場所・気持ちの面から考えましょう。"
+        },
+        {
+          "id": "q-leisure-4",
+          "stageId": "forecast",
+          "level": 3,
+          "text": "もし気分転換の機会が限られたままだと、気持ちや回復は、どう変わりそうですか?"
+        },
+        {
+          "id": "q-leisure-5",
+          "stageId": "direction",
+          "level": 3,
+          "text": "本人が楽しめる活動を考えるために、次に確認したいことは何ですか?"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel-breathing-activity",
+      "from": "t-breathing",
+      "to": "t-activity",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-breathing-sleep",
+      "from": "t-breathing",
+      "to": "t-sleep",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-breathing-safety",
+      "from": "t-breathing",
+      "to": "t-safety",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-nutrition-elimination",
+      "from": "t-nutrition",
+      "to": "t-elimination",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-nutrition-activity",
+      "from": "t-nutrition",
+      "to": "t-activity",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-nutrition-hygiene",
+      "from": "t-nutrition",
+      "to": "t-hygiene",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-elimination-activity",
+      "from": "t-elimination",
+      "to": "t-activity",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-elimination-sleep",
+      "from": "t-elimination",
+      "to": "t-sleep",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-activity-sleep",
+      "from": "t-activity",
+      "to": "t-sleep",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-activity-safety",
+      "from": "t-activity",
+      "to": "t-safety",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-activity-hygiene",
+      "from": "t-activity",
+      "to": "t-hygiene",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-sleep-cognition",
+      "from": "t-sleep",
+      "to": "t-cognition",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-sleep-coping",
+      "from": "t-sleep",
+      "to": "t-coping",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-dressing-activity",
+      "from": "t-dressing",
+      "to": "t-activity",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-dressing-temperature",
+      "from": "t-dressing",
+      "to": "t-temperature",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-dressing-hygiene",
+      "from": "t-dressing",
+      "to": "t-hygiene",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-temperature-hygiene",
+      "from": "t-temperature",
+      "to": "t-hygiene",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-safety-cognition",
+      "from": "t-safety",
+      "to": "t-cognition",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-safety-communication",
+      "from": "t-safety",
+      "to": "t-communication",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-cognition-communication",
+      "from": "t-cognition",
+      "to": "t-communication",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-cognition-self",
+      "from": "t-cognition",
+      "to": "t-self",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-communication-self",
+      "from": "t-communication",
+      "to": "t-self",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-communication-coping",
+      "from": "t-communication",
+      "to": "t-coping",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-communication-role",
+      "from": "t-communication",
+      "to": "t-role",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-understanding-coping",
+      "from": "t-understanding",
+      "to": "t-coping",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-understanding-values",
+      "from": "t-understanding",
+      "to": "t-values",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-understanding-cognition",
+      "from": "t-understanding",
+      "to": "t-cognition",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-understanding-nutrition",
+      "from": "t-understanding",
+      "to": "t-nutrition",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-self-role",
+      "from": "t-self",
+      "to": "t-role",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-self-coping",
+      "from": "t-self",
+      "to": "t-coping",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-self-activity",
+      "from": "t-self",
+      "to": "t-activity",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-self-sexuality",
+      "from": "t-self",
+      "to": "t-sexuality",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-role-coping",
+      "from": "t-role",
+      "to": "t-coping",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-role-leisure",
+      "from": "t-role",
+      "to": "t-leisure",
+      "status": "draft",
+      "direction": "both"
+    },
+    {
+      "id": "rel-sexuality-role",
+      "from": "t-sexuality",
+      "to": "t-role",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-coping-nutrition",
+      "from": "t-coping",
+      "to": "t-nutrition",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-values-coping",
+      "from": "t-values",
+      "to": "t-coping",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-values-communication",
+      "from": "t-values",
+      "to": "t-communication",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-leisure-coping",
+      "from": "t-leisure",
+      "to": "t-coping",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    },
+    {
+      "id": "rel-leisure-activity",
+      "from": "t-leisure",
+      "to": "t-activity",
+      "status": "draft",
+      "direction": "oneWay",
+      "needsReview": true,
+      "note": "v0.1で片側にだけ書かれていた関連。意図した一方向かは未確認。"
+    }
+  ],
+  "relationPolicy": {
+    "directional": true,
+    "note": "関連は1件ずつ方向(both/oneWay)を設定する。一律の双方向化はしない。学生が関連を追加・変更できる。"
+  },
+  "frameworks": [
+    {
+      "id": "gordon",
+      "label": "ゴードン",
+      "items": [
+        {
+          "id": "gordon.health",
+          "order": 1,
+          "label": "健康知覚・健康管理",
+          "formalName": null,
+          "topicId": "t-understanding",
+          "alsoTopicIds": [
+            "t-safety"
+          ],
+          "status": "draft",
+          "pagesUnverified": "p.54, 58",
+          "ownQuestions": [
+            {
+              "id": "q-own-gordon-health-1",
+              "stageId": "collect",
+              "level": 1,
+              "text": "健康を守るために、これまで続けてきたことは何ですか?"
+            }
+          ],
+          "mappingSuggestion": true
+        },
+        {
+          "id": "gordon.nutrition",
+          "order": 2,
+          "label": "栄養・代謝",
+          "formalName": null,
+          "topicId": "t-nutrition",
+          "alsoTopicIds": [
+            "t-hygiene",
+            "t-temperature"
+          ],
+          "status": "draft",
+          "pagesUnverified": "p.54, 59",
+          "mappingSuggestion": true
+        },
+        {
+          "id": "gordon.elimination",
+          "order": 3,
+          "label": "排泄",
+          "formalName": null,
+          "topicId": "t-elimination",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.54, 61",
+          "mappingSuggestion": true
+        },
+        {
+          "id": "gordon.activity",
+          "order": 4,
+          "label": "活動・運動",
+          "formalName": null,
+          "topicId": "t-activity",
+          "alsoTopicIds": [
+            "t-breathing",
+            "t-dressing",
+            "t-leisure"
+          ],
+          "status": "draft",
+          "pagesUnverified": "p.54, 62",
+          "mappingSuggestion": true
+        },
+        {
+          "id": "gordon.sleep",
+          "order": 5,
+          "label": "睡眠・休息",
+          "formalName": null,
+          "topicId": "t-sleep",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.54, 62",
+          "mappingSuggestion": true
+        },
+        {
+          "id": "gordon.cognition",
+          "order": 6,
+          "label": "認知・知覚",
+          "formalName": null,
+          "topicId": "t-cognition",
+          "alsoTopicIds": [
+            "t-communication"
+          ],
+          "status": "draft",
+          "pagesUnverified": "p.54, 63",
+          "mappingSuggestion": true
+        },
+        {
+          "id": "gordon.self",
+          "order": 7,
+          "label": "自己知覚・自己概念",
+          "formalName": null,
+          "topicId": "t-self",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.55, 64",
+          "mappingSuggestion": true
+        },
+        {
+          "id": "gordon.role",
+          "order": 8,
+          "label": "役割・関係",
+          "formalName": null,
+          "topicId": "t-role",
+          "alsoTopicIds": [
+            "t-communication"
+          ],
+          "status": "draft",
+          "pagesUnverified": "p.55, 65",
+          "ownQuestions": [
+            {
+              "id": "q-own-gordon-role-1",
+              "stageId": "collect",
+              "level": 1,
+              "text": "家族や周囲の人との関係は、どんなふうですか?"
+            }
+          ],
+          "mappingSuggestion": true
+        },
+        {
+          "id": "gordon.sexuality",
+          "order": 9,
+          "label": "性・生殖",
+          "formalName": null,
+          "topicId": "t-sexuality",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.55, 66",
+          "mappingSuggestion": true
+        },
+        {
+          "id": "gordon.coping",
+          "order": 10,
+          "label": "コーピング・ストレス耐性",
+          "formalName": null,
+          "topicId": "t-coping",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.55, 67",
+          "mappingSuggestion": true
+        },
+        {
+          "id": "gordon.values",
+          "order": 11,
+          "label": "価値・信念",
+          "formalName": null,
+          "topicId": "t-values",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.55, 67",
+          "ownQuestions": [
+            {
+              "id": "q-own-gordon-values-1",
+              "stageId": "collect",
+              "level": 1,
+              "text": "本人が望む生活や将来像は何ですか?"
+            }
+          ],
+          "mappingSuggestion": true
+        }
+      ]
+    },
+    {
+      "id": "henderson",
+      "label": "ヘンダーソン",
+      "items": [
+        {
+          "id": "henderson.breathe",
+          "order": 1,
+          "label": "呼吸",
+          "formalName": null,
+          "topicId": "t-breathing",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.50",
+          "extras": {
+            "fulfilled": "息苦しさが少なく、安楽に呼吸できている。",
+            "considerFactors": [
+              "気道・肺・心臓にかかわる病気",
+              "不安や緊張",
+              "室温・換気などの環境"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.eat",
+          "order": 2,
+          "label": "飲食",
+          "formalName": null,
+          "topicId": "t-nutrition",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.50",
+          "extras": {
+            "fulfilled": "必要な食事と水分を、苦痛なく、できるだけ自分で取れている。",
+            "considerFactors": [
+              "口・のどの状態",
+              "病気や治療による制限",
+              "食欲や気持ち",
+              "食べる動作"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.excrete",
+          "order": 3,
+          "label": "排泄",
+          "formalName": null,
+          "topicId": "t-elimination",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.50",
+          "extras": {
+            "fulfilled": "排泄が苦痛なく、できるだけ自分の方法で行えている。",
+            "considerFactors": [
+              "食事・水分・動き",
+              "薬や手術",
+              "排泄の動作や環境"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.move",
+          "order": 4,
+          "label": "動作・姿勢",
+          "formalName": null,
+          "topicId": "t-activity",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.50",
+          "extras": {
+            "fulfilled": "安全に、できるだけ自由に、動いたり姿勢を保ったりできている。",
+            "considerFactors": [
+              "筋力・関節・麻痺",
+              "痛みや息苦しさ",
+              "安静度や管類",
+              "気持ちや意欲"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.sleep",
+          "order": 5,
+          "label": "睡眠・休息",
+          "formalName": null,
+          "topicId": "t-sleep",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.50, 52",
+          "extras": {
+            "fulfilled": "必要な睡眠と休息が取れ、疲れが回復している。",
+            "considerFactors": [
+              "痛み・かゆみなどの症状",
+              "音・光などの環境",
+              "不安や気持ち"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.dress",
+          "order": 6,
+          "label": "衣類",
+          "formalName": null,
+          "topicId": "t-dressing",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.52",
+          "extras": {
+            "fulfilled": "状況や好みに合った衣類を選び、着替えられている。",
+            "considerFactors": [
+              "腕や手の動き",
+              "点滴などの管",
+              "認知や意欲"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.temp",
+          "order": 7,
+          "label": "体温",
+          "formalName": null,
+          "topicId": "t-temperature",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.52",
+          "extras": {
+            "fulfilled": "体温が本人の平常の範囲で、快適に過ごせている。",
+            "considerFactors": [
+              "感染・炎症などの病気や治療",
+              "室温・寝具・衣類",
+              "体の反応の個人差"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.hygiene",
+          "order": 8,
+          "label": "清潔・皮膚",
+          "formalName": null,
+          "topicId": "t-hygiene",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.52",
+          "extras": {
+            "fulfilled": "体と口の中が清潔で、皮膚が守られている。",
+            "considerFactors": [
+              "動きや自立度",
+              "栄養状態",
+              "湿り気・圧迫などの環境",
+              "清潔にする機会"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.safety",
+          "order": 9,
+          "label": "安全",
+          "formalName": null,
+          "topicId": "t-safety",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.52",
+          "extras": {
+            "fulfilled": "事故や感染などの危険から守られ、安心して過ごせている。",
+            "considerFactors": [
+              "動き・視力・聴力・認知",
+              "治療や薬",
+              "病室の環境",
+              "管類"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.communicate",
+          "order": 10,
+          "label": "コミュニケーション",
+          "formalName": null,
+          "topicId": "t-communication",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.52",
+          "extras": {
+            "fulfilled": "気持ちや希望を、自分なりの方法で伝えられている。",
+            "considerFactors": [
+              "感覚・言葉・意識の状態",
+              "不安や落ち込み",
+              "環境や人間関係"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.faith",
+          "order": 11,
+          "label": "信仰",
+          "formalName": null,
+          "topicId": "t-values",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.52",
+          "ownQuestions": [
+            {
+              "id": "q-own-henderson-faith-1",
+              "stageId": "meaning",
+              "level": 2,
+              "text": "入院生活で、信仰上の習慣のために配慮が必要なことはありますか?"
+            }
+          ],
+          "extras": {
+            "fulfilled": "大切にしている信仰・価値観に沿った生活ができている。",
+            "considerFactors": [
+              "入院や治療による制限",
+              "医療者の理解",
+              "環境や持ち物"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.work",
+          "order": 12,
+          "label": "仕事・達成感",
+          "formalName": null,
+          "topicId": "t-role",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.52",
+          "ownQuestions": [
+            {
+              "id": "q-own-henderson-work-1",
+              "stageId": "collect",
+              "level": 1,
+              "text": "やりがいや達成感を感じる活動は何ですか? 今できていますか?"
+            }
+          ],
+          "extras": {
+            "fulfilled": "役割ややりがいのある活動を持て、達成感が得られている。",
+            "considerFactors": [
+              "入院や療養による制限",
+              "仕事や家庭の事情",
+              "気持ちや体力"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.play",
+          "order": 13,
+          "label": "遊び・余暇",
+          "formalName": null,
+          "topicId": "t-leisure",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.52",
+          "extras": {
+            "fulfilled": "遊びや気分転換を楽しめている。",
+            "considerFactors": [
+              "痛みや疲れ",
+              "活動の制限",
+              "環境や道具"
+            ]
+          },
+          "mappingSuggestion": true
+        },
+        {
+          "id": "henderson.learn",
+          "order": 14,
+          "label": "学習",
+          "formalName": null,
+          "topicId": "t-understanding",
+          "alsoTopicIds": [],
+          "status": "draft",
+          "pagesUnverified": "p.52",
+          "ownQuestions": [
+            {
+              "id": "q-own-henderson-learn-1",
+              "stageId": "collect",
+              "level": 1,
+              "text": "知りたいことや学びたいことは何ですか?"
+            },
+            {
+              "id": "q-own-henderson-learn-2",
+              "stageId": "direction",
+              "level": 3,
+              "text": "どんな伝え方なら、本人が理解しやすそうですか?"
+            }
+          ],
+          "extras": {
+            "fulfilled": "健康や療養について学び、知りたいことを知れている。",
+            "considerFactors": [
+              "理解力・認知",
+              "説明の方法や量",
+              "不安や気持ち",
+              "学ぶ機会"
+            ]
+          },
+          "mappingSuggestion": true
+        }
+      ]
+    }
+  ],
+  "mappingPolicy": {
+    "status": "draft",
+    "autoConfirm": false,
+    "userCanChange": true,
+    "note": "topicIdとalsoTopicIdsによる枠組みの対応は、原本確認前の暫定。正しい分類として自動確定せず、提案として表示する。学生が確認・変更でき、変更は利用者データ側に保存する。",
+    "suggestion": true
+  },
+  "frameworkCoveragePolicy": {
+    "status": "draft",
+    "mode": "showAsOtherViewpoints",
+    "label": "ほかの観点",
+    "rule": "選んだ枠組みの項目の topicId・alsoTopicIds のどれにも含まれないテーマは、「ほかの観点」として一覧に出し、学生が開ける。枠組み間の対応を新たに断定しないための扱い。",
+    "computedAtRuntime": true,
+    "currentResult": {
+      "gordon": [],
+      "henderson": [
+        "t-cognition",
+        "t-self",
+        "t-sexuality",
+        "t-coping"
+      ]
+    },
+    "purpose": "どちらの枠組みを選んでも、18テーマすべての質問に到達できるようにする。"
+  },
+  "problemTypes": [
+    {
+      "id": "actual",
+      "order": 1,
+      "label": "実在型",
+      "description": null,
+      "aliasesUnverified": [
+        "現在ある問題",
+        "顕在化している問題"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "risk",
+      "order": 2,
+      "label": "リスク型",
+      "description": null,
+      "aliasesUnverified": [
+        "今後起こり得る問題"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "health_promotion",
+      "order": 3,
+      "label": "ヘルスプロモーション型",
+      "description": null,
+      "aliasesUnverified": [
+        "ウェルネス型",
+        "健康増進型"
+      ],
+      "status": "draft",
+      "memo": "分類名・説明・選択肢は教科書の確認後に確定する。"
+    }
+  ],
+  "basicInfo": {
+    "status": "draft",
+    "principles": [
+      "患者を特定できる情報は、収集も保存もしない。",
+      "tier=core は「あると考えやすい情報」、optional は「必要なときだけ」。どちらも未入力のまま次へ進める。",
+      "基礎情報にはS/Oの分類を付けない。情報源(informant)だけを選べる。",
+      "リスト項目は「なし」と「不明」を区別できるようにする(未入力と区別するため)。",
+      "入院前と現在を分けて記録できる項目には phases を付ける。",
+      "アレルギーと副作用・不耐症は別項目。本人の申告や記録を整理する欄で、アプリは医学的な分類や禁忌の判断をしない。",
+      "ADLは特定の尺度を固定せず、尺度を差し替えられる。点数計算は現段階では行わない。",
+      "基礎情報は概要を1か所に記録し、テーマ画面では参照表示のみ(二重入力させない)。テーマ側では追加の観察・詳細を情報カードに記録する。",
+      "「未入力・未確認・不明・あり・なし」は entryStates に従って使い分ける。"
+    ],
+    "entryPolicy": {
+      "coreBlocksNext": false,
+      "informantSelectable": true,
+      "natureApplies": false
+    },
+    "piiPolicy": {
+      "neverCollect": [
+        "氏名",
+        "住所",
+        "生年月日",
+        "患者番号",
+        "電話番号",
+        "施設名・病棟名・部屋番号",
+        "担当者の名前",
+        "具体的な日付(入院日・手術日・実習日など)"
+      ],
+      "useInstead": {
+        "日付": "入院◯日目・術後◯日目・◯年前",
+        "年齢": "年代・発達段階。必要なときだけ、具体的な年齢(◯歳◯か月、生後◯か月など)"
+      },
+      "combinationNote": "年代・病名・職業・地域などは、組み合わせると特定されうる。具体的に書きすぎない。",
+      "guard": "warn",
+      "birthDate": "年齢の入力方法を問わず、生年月日は収集しない。",
+      "freeTextRule": "自由記述の欄(リストの補足欄・ADLの補足・補助具・環境を含む)には、すべて注意の仕組み(piiGuard)を付ける。日付・電話番号・郵便番号・氏名らしい表現などを簡易に検知して注意する。検知は完全ではない。"
+    },
+    "groups": [
+      {
+        "id": "bg-person",
+        "label": "本人の概要",
+        "fields": [
+          {
+            "id": "bi.ageGroup",
+            "label": "年代・発達段階",
+            "tier": "core",
+            "type": "choiceGrouped",
+            "hint": "成人は年代、小児は発達段階で選ぶ。実年齢は、下の「具体的な年齢」に任意で入力する。",
+            "informantDefault": "record",
+            "optionGroups": [
+              {
+                "id": "child",
+                "label": "小児(発達段階)"
+              },
+              {
+                "id": "adult",
+                "label": "成人(年代)"
+              }
+            ],
+            "options": [
+              {
+                "id": "age.newborn",
+                "label": "新生児",
+                "group": "child"
+              },
+              {
+                "id": "age.infant",
+                "label": "乳児",
+                "group": "child"
+              },
+              {
+                "id": "age.toddler",
+                "label": "幼児",
+                "group": "child"
+              },
+              {
+                "id": "age.schoolchild",
+                "label": "学童",
+                "group": "child"
+              },
+              {
+                "id": "age.adolescent",
+                "label": "思春期",
+                "group": "child"
+              },
+              {
+                "id": "age.20s",
+                "label": "20代",
+                "group": "adult"
+              },
+              {
+                "id": "age.30s",
+                "label": "30代",
+                "group": "adult"
+              },
+              {
+                "id": "age.40s",
+                "label": "40代",
+                "group": "adult"
+              },
+              {
+                "id": "age.50s",
+                "label": "50代",
+                "group": "adult"
+              },
+              {
+                "id": "age.60s",
+                "label": "60代",
+                "group": "adult"
+              },
+              {
+                "id": "age.70s",
+                "label": "70代",
+                "group": "adult"
+              },
+              {
+                "id": "age.80s",
+                "label": "80代",
+                "group": "adult"
+              },
+              {
+                "id": "age.90s+",
+                "label": "90代以上",
+                "group": "adult"
+              }
+            ],
+            "rangeNote": null,
+            "rangeNoteMemo": "発達段階の年齢範囲(例:新生児は生後何日まで、など)は教科書・領域で異なるため未記入。原本で確認する。10代後半(成人の区分に入らない年齢)の扱いも未確認。"
+          },
+          {
+            "id": "bi.ageExact",
+            "label": "具体的な年齢",
+            "tier": "optional",
+            "type": "ageDetail",
+            "hint": "年代・発達段階だけでは足りないときだけ入力する。入力しなくてもよい。",
+            "supplements": "bi.ageGroup",
+            "informantDefault": "record",
+            "modes": [
+              {
+                "id": "years",
+                "label": "◯歳",
+                "fields": {
+                  "years": "int"
+                }
+              },
+              {
+                "id": "yearsMonths",
+                "label": "◯歳◯か月",
+                "fields": {
+                  "years": "int",
+                  "months": "int(0-11)"
+                }
+              },
+              {
+                "id": "monthsAfterBirth",
+                "label": "生後◯か月",
+                "fields": {
+                  "months": "int"
+                }
+              },
+              {
+                "id": "daysAfterBirth",
+                "label": "生後◯日",
+                "fields": {
+                  "days": "int"
+                }
+              }
+            ],
+            "birthDate": "never",
+            "noticeOnOpen": "n-age-exact",
+            "consistencyCheck": "none",
+            "consistencyMemo": "年代・発達段階と具体的な年齢の整合は自動で確認しない(区分の範囲が資料で異なるため)。"
+          },
+          {
+            "id": "bi.sex",
+            "label": "性別",
+            "tier": "optional",
+            "type": "choice",
+            "hint": "アセスメントに必要な場合のみ。",
+            "informantDefault": "record",
+            "options": [
+              "男性",
+              "女性",
+              "その他",
+              "記載しない"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bg-admission",
+        "label": "入院と経過",
+        "fields": [
+          {
+            "id": "bi.hospitalDay",
+            "label": "入院◯日目",
+            "tier": "core",
+            "type": "int",
+            "hint": "日付は書かず、日数で書く。",
+            "unit": "日目",
+            "min": 1,
+            "relativeDate": true,
+            "informantDefault": "record"
+          },
+          {
+            "id": "bi.mainDisease",
+            "label": "主病名",
+            "tier": "core",
+            "type": "text",
+            "hint": "病名のみ。担当者名・施設名は書かない。",
+            "maxLength": 100,
+            "piiGuard": true,
+            "informantDefault": "record"
+          },
+          {
+            "id": "bi.course",
+            "label": "入院後の経過(時系列)",
+            "tier": "optional",
+            "type": "timeline",
+            "hint": "出来事や節目だけを、時系列で書く。日付は使わない。",
+            "itemShape": {
+              "when": {
+                "base": "choice",
+                "day": "int"
+              },
+              "event": "text"
+            },
+            "baseOptions": [
+              "入院",
+              "術後",
+              "その他"
+            ],
+            "maxLengthPerEvent": 100,
+            "relativeDate": true,
+            "informantDefault": "record",
+            "scopeRule": "治療や状態の節目・出来事だけを書く。症状や観察の詳細は各テーマの情報カードに、薬剤は「内服薬・使用薬剤」に、処置は「治療内容」に書く。",
+            "piiGuard": true
+          }
+        ]
+      },
+      {
+        "id": "bg-history",
+        "label": "既往・治療・薬",
+        "fields": [
+          {
+            "id": "bi.pastHistory",
+            "label": "既往歴",
+            "tier": "core",
+            "type": "list",
+            "hint": "過去の病気。時期は「◯年前」の形で。",
+            "itemShape": {
+              "name": "text",
+              "timeAgo": "text?"
+            },
+            "informantDefault": "record",
+            "statusOptions": [
+              "has",
+              "none",
+              "unknown",
+              "unconfirmed"
+            ],
+            "boundaryNote": "既往歴と手術歴は、仕様書どおり別項目で維持する。",
+            "piiGuard": true
+          },
+          {
+            "id": "bi.surgeryHistory",
+            "label": "手術歴",
+            "tier": "optional",
+            "type": "list",
+            "hint": "手術日は書かず「◯年前」「術後◯日目」で。",
+            "itemShape": {
+              "name": "text",
+              "timeAgo": "text?"
+            },
+            "informantDefault": "record",
+            "statusOptions": [
+              "has",
+              "none",
+              "unknown",
+              "unconfirmed"
+            ],
+            "boundaryNote": "既往歴と手術歴は、仕様書どおり別項目で維持する。",
+            "piiGuard": true
+          },
+          {
+            "id": "bi.treatment",
+            "label": "治療内容(薬剤以外の処置・治療)",
+            "tier": "core",
+            "type": "list",
+            "hint": "手術・処置・酸素・リハビリ・食事療法・安静など、薬剤以外。薬剤は「内服薬・使用薬剤」に書く。",
+            "itemShape": {
+              "name": "text",
+              "note": "text?"
+            },
+            "informantDefault": "record",
+            "suggestions": [
+              "手術",
+              "処置",
+              "酸素",
+              "リハビリ",
+              "食事療法",
+              "安静"
+            ],
+            "boundaryRule": {
+              "vs": "bi.medication",
+              "text": "薬剤は「内服薬・使用薬剤」へ。薬剤以外の処置・治療がここ。"
+            },
+            "boundaryNote": "境界が迷う治療(輸血・栄養療法など)の扱いは学校・施設で異なる(未確認)。迷うときは指導者に確認する。",
+            "piiGuard": true
+          },
+          {
+            "id": "bi.medication",
+            "label": "内服薬・使用薬剤",
+            "tier": "core",
+            "type": "list",
+            "hint": "内服薬・注射薬・点滴薬・外用薬など、薬剤はここにまとめる。用量・時間は任意。薬の判断や自動チェックはしない。",
+            "itemShape": {
+              "name": "text",
+              "route": "choice?",
+              "purpose": "text?"
+            },
+            "phases": [
+              "before",
+              "now"
+            ],
+            "informantDefault": "record",
+            "statusOptions": [
+              "has",
+              "none",
+              "unknown",
+              "unconfirmed"
+            ],
+            "routeOptions": [
+              "内服",
+              "注射",
+              "点滴",
+              "外用",
+              "その他"
+            ],
+            "routePurpose": "表示の整理用。",
+            "boundaryRule": {
+              "vs": "bi.treatment",
+              "text": "薬剤は、内服・注射・点滴・外用を問わずこの項目に書く。薬剤以外の処置・治療は「治療内容」に書く。"
+            },
+            "piiGuard": true
+          },
+          {
+            "id": "bi.allergy",
+            "label": "アレルギー(本人の申告・記録上の情報)",
+            "tier": "core",
+            "type": "list",
+            "hint": "本人の申告や記録に「アレルギー」と書かれているもの。",
+            "itemShape": {
+              "category": "choice",
+              "substance": "text",
+              "reportedReaction": "text?",
+              "informant": "informantTypes(複数可)",
+              "note": "text?"
+            },
+            "categoryOptions": [
+              "薬剤",
+              "食べ物",
+              "医療材料",
+              "その他"
+            ],
+            "categoryPurpose": "表示の整理用。医学的な分類ではない。",
+            "informantDefault": "record",
+            "separateFrom": "bi.adverseReaction",
+            "placementRule": "どちらに入れるかは、本人の申告や記録の書かれ方に従う。迷うときは指導者・担当看護師に確認する。アプリは分類を判定しない。",
+            "medicalJudgment": "none",
+            "noticeOnOpen": "n-allergy",
+            "linkedFields": [
+              "bi.medication"
+            ],
+            "statusOptions": [
+              "has",
+              "none",
+              "unknown",
+              "unconfirmed"
+            ],
+            "piiGuard": true
+          },
+          {
+            "id": "bi.adverseReaction",
+            "label": "副作用・不耐症(本人の申告・記録上の情報)",
+            "tier": "optional",
+            "type": "list",
+            "hint": "本人の申告や記録に「副作用」「合わなかった」などと書かれているもの。",
+            "itemShape": {
+              "category": "choice",
+              "substance": "text",
+              "reportedReaction": "text?",
+              "informant": "informantTypes(複数可)",
+              "note": "text?"
+            },
+            "categoryOptions": [
+              "薬剤",
+              "食べ物",
+              "医療材料",
+              "その他"
+            ],
+            "categoryPurpose": "表示の整理用。医学的な分類ではない。",
+            "informantDefault": "record",
+            "separateFrom": "bi.allergy",
+            "placementRule": "どちらに入れるかは、本人の申告や記録の書かれ方に従う。迷うときは指導者・担当看護師に確認する。アプリは分類を判定しない。",
+            "medicalJudgment": "none",
+            "noticeOnOpen": "n-allergy",
+            "linkedFields": [
+              "bi.medication"
+            ],
+            "statusOptions": [
+              "has",
+              "none",
+              "unknown",
+              "unconfirmed"
+            ],
+            "piiGuard": true
+          }
+        ]
+      },
+      {
+        "id": "bg-life",
+        "label": "生活",
+        "fields": [
+          {
+            "id": "bi.adl",
+            "label": "ADL(日常生活動作)",
+            "tier": "core",
+            "type": "adl",
+            "hint": "入院前と現在を分けて選ぶ。自立・見守り・一部介助・全介助・不明・未確認から、学校・施設の記録方法に合わせて記録する。",
+            "phases": [
+              "before",
+              "now"
+            ],
+            "domains": [
+              {
+                "id": "adl.eat",
+                "label": "食事",
+                "definition": "食べる・飲む動作。自力で食べられるか、介助が必要か。",
+                "boundaryNote": "飲み込みの様子は、テーマ「食事・水分・栄養」で観察する。"
+              },
+              {
+                "id": "adl.move",
+                "label": "移動",
+                "definition": "歩く、または車椅子・歩行補助具で、場所を移る動作。",
+                "boundaryNote": "ベッドや椅子の間の乗り移りは「移乗」。"
+              },
+              {
+                "id": "adl.transfer",
+                "label": "移乗",
+                "definition": "ベッド・椅子・車椅子・便座などの間で、乗り移る動作。",
+                "boundaryNote": "場所をまたぐ移動は「移動」。"
+              },
+              {
+                "id": "adl.toilet",
+                "label": "排泄",
+                "definition": "排尿・排便の一連の動作(便器での排泄、後始末、衣類の上げ下げ)。",
+                "boundaryNote": "トイレまでの移動は「移動」、便座への乗り移りは「移乗」。"
+              },
+              {
+                "id": "adl.hygiene",
+                "label": "清潔",
+                "definition": "体を洗う・拭く・入浴するなど、体の清潔を保つ動作。",
+                "boundaryNote": "洗顔・整髪・歯みがきは「整容」。"
+              },
+              {
+                "id": "adl.dress",
+                "label": "更衣",
+                "definition": "衣類を選び、着る・脱ぐ動作。",
+                "boundaryNote": "身だしなみを整える動作は「整容」。"
+              },
+              {
+                "id": "adl.grooming",
+                "label": "整容",
+                "definition": "洗顔・整髪・歯みがき・髭剃りなど、身だしなみを整える動作。",
+                "boundaryNote": "体を洗う・入浴は「清潔」。口腔ケアの区分は学校・施設で異なる(未確認)。"
+              }
+            ],
+            "domainNote": "領域の定義と境目は仮案。学校・施設の定義に合わせて差し替える(未確認)。テーマとの参照関係は、basicInfo.references に移した。",
+            "scaleId": "simple6",
+            "scales": [
+              {
+                "id": "simple6",
+                "label": "簡易段階(仮・学校/施設の基準に要調整)",
+                "status": "draft",
+                "scoring": "none",
+                "levels": [
+                  {
+                    "id": "independent",
+                    "label": "自立",
+                    "definition": "一連の動作を自分で行える。必要な補助具を自分で使用する場合も、動作そのものに他者の援助がなければ自立として記録する。"
+                  },
+                  {
+                    "id": "supervision",
+                    "label": "見守り",
+                    "definition": "身体に触れる介助はないが、安全確認、声かけ、手順の促し、近くでの見守りが必要。"
+                  },
+                  {
+                    "id": "partial",
+                    "label": "一部介助",
+                    "definition": "動作の一部に、身体を支える・持ち上げる・衣類操作を手伝うなどの直接的な介助が必要。本人が行える部分もある。"
+                  },
+                  {
+                    "id": "full",
+                    "label": "全介助",
+                    "definition": "動作のほぼ全てに他者の直接的な介助が必要。本人が一部参加できる場合は、その参加状況を補足欄に記録する。"
+                  },
+                  {
+                    "id": "unknown",
+                    "label": "不明",
+                    "entryStateId": "unknown",
+                    "definition": "情報はあるが、実際の状態や介助の程度を判断できない。"
+                  },
+                  {
+                    "id": "unconfirmed",
+                    "label": "未確認",
+                    "entryStateId": "unconfirmed",
+                    "definition": "まだ本人への確認や動作の観察を行っていない。"
+                  }
+                ]
+              }
+            ],
+            "scalePolicy": {
+              "fixedStandard": false,
+              "customScalesAllowed": true,
+              "scoring": "notImplemented",
+              "note": "特定の尺度を標準として固定しない。学校・施設独自の尺度は、段階の名前・順序・説明を持つ尺度として scales に追加できる。点数計算(Barthel指数など)は現段階では実装しない。見守りと一部介助の区別は levelSelectionGuidance を参照する。"
+            },
+            "entry": {
+              "unit": "領域×(入院前/現在)",
+              "value": {
+                "scaleId": "text",
+                "levelId": "text",
+                "informant": "informantTypes(複数可)",
+                "note": "text?"
+              },
+              "phaseInformantDefault": true,
+              "storageNote": "scaleId と levelId を一緒に保存する。尺度を切り替えても、過去の入力が壊れない。"
+            },
+            "aids": {
+              "phases": [
+                "before",
+                "now"
+              ],
+              "equipment": {
+                "label": "補助具",
+                "itemShape": {
+                  "name": "text",
+                  "domainId": "adl.*?"
+                },
+                "suggestions": [
+                  "杖",
+                  "歩行器",
+                  "車椅子",
+                  "装具",
+                  "ポータブルトイレ",
+                  "手すり"
+                ]
+              },
+              "helper": {
+                "label": "介助者",
+                "itemShape": {
+                  "who": "choice",
+                  "domainId": "adl.*?",
+                  "note": "text?"
+                },
+                "whoOptions": [
+                  "看護師",
+                  "家族",
+                  "介護者(ヘルパーなど)",
+                  "他職種",
+                  "不明"
+                ],
+                "nameNotAllowed": true,
+                "piiGuard": true,
+                "note": "介助者は選択式。名前は書かない。補足欄にも個人名を書かない。"
+              },
+              "environment": {
+                "label": "環境",
+                "type": "text",
+                "maxLength": 200,
+                "piiGuard": true,
+                "suggestions": [
+                  "住まい(段差・階段など)",
+                  "病室・ベッド周り",
+                  "トイレ・浴室の様子"
+                ],
+                "environmentNote": "住所・地名・施設名は書かない。"
+              }
+            },
+            "iadlSet": {
+              "id": "adl.iadl",
+              "label": "IADL(手段的日常生活動作)",
+              "optional": true,
+              "defaultEnabled": false,
+              "addedBy": "student",
+              "status": "draft",
+              "domains": [
+                {
+                  "id": "iadl.shopping",
+                  "label": "買い物"
+                },
+                {
+                  "id": "iadl.money",
+                  "label": "金銭管理"
+                },
+                {
+                  "id": "iadl.medication",
+                  "label": "服薬管理"
+                },
+                {
+                  "id": "iadl.cooking",
+                  "label": "調理"
+                },
+                {
+                  "id": "iadl.housework",
+                  "label": "家事"
+                },
+                {
+                  "id": "iadl.phone",
+                  "label": "電話・連絡"
+                },
+                {
+                  "id": "iadl.outing",
+                  "label": "外出・交通機関"
+                }
+              ],
+              "domainNote": "含める領域は、学校や実習領域(在宅・老年など)で異なる(未確認)。基本項目には含めない。テーマとの参照は basicInfo.references。"
+            },
+            "display": {
+              "compare": "beforeNow",
+              "judgment": "none"
+            },
+            "piiGuard": true,
+            "levelSelectionGuidance": {
+              "status": "draft",
+              "distinction": "見守りは身体に触れる介助なし、一部介助は動作の一部に直接的な身体介助あり、という違いを目安にする。",
+              "recordingPoints": [
+                "どの動作のどの部分で支援が必要か",
+                "声かけ・見守り・身体介助のどれが必要か",
+                "補助具や環境調整の有無",
+                "入院前と現在で条件が違う場合は、その条件"
+              ],
+              "caution": "この段階は学習用の仮案であり、FIM・Barthel Indexなどの評価尺度ではない。学校・実習施設の定義や記録方法を優先し、判断に迷う場合は指導者に確認する。"
+            }
+          },
+          {
+            "id": "bi.lifestyle",
+            "label": "生活習慣",
+            "tier": "core",
+            "type": "text",
+            "hint": "食事・睡眠・運動・嗜好・日課など、入院前の様子。",
+            "phases": [
+              "before"
+            ],
+            "maxLength": 300,
+            "piiGuard": true,
+            "suggestions": [
+              "食事",
+              "睡眠",
+              "運動",
+              "嗜好(喫煙・飲酒)",
+              "仕事・日課"
+            ]
+          },
+          {
+            "id": "bi.familySupport",
+            "label": "家族構成・支援状況",
+            "tier": "optional",
+            "type": "text",
+            "hint": "名前・連絡先は書かない。「同居の家族あり」「日中は一人」のように書く。",
+            "maxLength": 200,
+            "piiGuard": true,
+            "sensitivity": "sensitive",
+            "noticeOnOpen": "n-family"
+          },
+          {
+            "id": "bi.other",
+            "label": "その他の背景",
+            "tier": "optional",
+            "type": "text",
+            "hint": "上のどこにも入らない、考えるのに必要なこと。",
+            "maxLength": 300,
+            "piiGuard": true
+          }
+        ]
+      }
+    ],
+    "entryStates": {
+      "status": "draft",
+      "values": [
+        {
+          "id": "has",
+          "label": "あり",
+          "meaning": "確認でき、該当するものがある(内容を書く)。"
+        },
+        {
+          "id": "none",
+          "label": "なし",
+          "meaning": "確認でき、該当するものはない。"
+        },
+        {
+          "id": "unknown",
+          "label": "不明",
+          "meaning": "確認しようとしたが、分からなかった。"
+        },
+        {
+          "id": "unconfirmed",
+          "label": "未確認",
+          "meaning": "確認が必要だが、まだ確認していない。"
+        }
+      ],
+      "unentered": {
+        "label": "未入力",
+        "meaning": "まだ何も入力・選択していない空の状態。学生が選ぶ値ではなく、値としては保存しない。",
+        "selectable": false
+      },
+      "rules": [
+        "未入力は「空」の状態。未確認は、学生が「あとで確認する」と決めた状態。一覧では別々に表示する。",
+        "不明は、確認を試みた結果。まだ確認していない未確認とは区別する。",
+        "なしは、確認できたときだけ選ぶ。確認していないときは未確認を選ぶ。",
+        "ADLでは、自立・一部介助・全介助が「あり」に相当する具体的な段階。不明・未確認は同じ意味で使う。",
+        "未確認の項目は、STEP5の「追加で確認したい情報」につなげられる(提案)。"
+      ],
+      "appliesTo": [
+        "bi.pastHistory",
+        "bi.surgeryHistory",
+        "bi.medication",
+        "bi.allergy",
+        "bi.adverseReaction",
+        "bi.adl"
+      ],
+      "futureNote": "テーマの情報カードにも同じ状態の言葉を使う案。未確定。"
+    },
+    "referencePolicy": {
+      "status": "draft",
+      "mode": "readOnly",
+      "reEntry": false,
+      "roles": {
+        "basicInfo": "患者の概要を1か所に記録する。",
+        "topic": "テーマ画面では基礎情報を参照表示し、追加の観察・詳細は情報カードに記録する。"
+      },
+      "suggestionNote": "参照関係はすべて提案(suggestion)。確定しない。学生が追加・削除でき、変更は利用者データ側に保存する。",
+      "userCanChange": true
+    },
+    "referenceScopes": {
+      "step3Slots": {
+        "status": "draft",
+        "appliesToTopics": "all",
+        "slots": {
+          "disease": [
+            "bi.mainDisease"
+          ],
+          "history": [
+            "bi.pastHistory",
+            "bi.surgeryHistory"
+          ],
+          "treatment": [
+            "bi.treatment"
+          ],
+          "medication": [
+            "bi.medication"
+          ],
+          "age": [
+            "bi.ageGroup"
+          ],
+          "adl": [
+            "bi.adl"
+          ],
+          "lifeBackground": [
+            "bi.lifestyle",
+            "bi.other"
+          ]
+        },
+        "note": "STEP2(意味づけ)とSTEP3(関連づけ・原因)で、どのテーマを考えるときにも参照できる(7項目)。",
+        "stageIds": [
+          "meaning",
+          "cause"
+        ],
+        "stepIds": [
+          "step2",
+          "step3"
+        ],
+        "excluded": {
+          "bi.familySupport": "センシティブのため、全テーマには表示しない。ref-familyのテーマ(役割・人間関係・仕事/ストレスへの対処)でのみ、既定で折りたたんで表示する。"
+        },
+        "suggestion": true
+      },
+      "headerContext": {
+        "status": "draft",
+        "fieldIds": [
+          "bi.hospitalDay"
+        ],
+        "note": "入院◯日目を、各テーマ画面の見出しに表示する。",
+        "suggestion": true
+      },
+      "timelinePanel": {
+        "status": "draft",
+        "fieldIds": [
+          "bi.course"
+        ],
+        "note": "経過は時系列のパネルで別に見る。テーマの詳細と重複させないため、テーマへの参照はしない。",
+        "suggestion": true
+      }
+    },
+    "references": [
+      {
+        "id": "ref-sex",
+        "source": {
+          "fieldId": "bi.sex"
+        },
+        "topicIds": [
+          "t-sexuality"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "suggestion": true
+      },
+      {
+        "id": "ref-allergy",
+        "source": {
+          "fieldId": "bi.allergy"
+        },
+        "topicIds": [
+          "t-nutrition",
+          "t-safety"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "suggestion": true
+      },
+      {
+        "id": "ref-adverse",
+        "source": {
+          "fieldId": "bi.adverseReaction"
+        },
+        "topicIds": [
+          "t-safety"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "suggestion": true
+      },
+      {
+        "id": "ref-adl-eat",
+        "source": {
+          "fieldId": "bi.adl",
+          "domainId": "adl.eat"
+        },
+        "topicIds": [
+          "t-nutrition"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "showPhases": [
+          "before",
+          "now"
+        ],
+        "suggestion": true
+      },
+      {
+        "id": "ref-adl-move",
+        "source": {
+          "fieldId": "bi.adl",
+          "domainId": "adl.move"
+        },
+        "topicIds": [
+          "t-activity"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "showPhases": [
+          "before",
+          "now"
+        ],
+        "suggestion": true
+      },
+      {
+        "id": "ref-adl-transfer",
+        "source": {
+          "fieldId": "bi.adl",
+          "domainId": "adl.transfer"
+        },
+        "topicIds": [
+          "t-activity"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "showPhases": [
+          "before",
+          "now"
+        ],
+        "suggestion": true
+      },
+      {
+        "id": "ref-adl-toilet",
+        "source": {
+          "fieldId": "bi.adl",
+          "domainId": "adl.toilet"
+        },
+        "topicIds": [
+          "t-elimination"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "showPhases": [
+          "before",
+          "now"
+        ],
+        "suggestion": true
+      },
+      {
+        "id": "ref-adl-hygiene",
+        "source": {
+          "fieldId": "bi.adl",
+          "domainId": "adl.hygiene"
+        },
+        "topicIds": [
+          "t-hygiene"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "showPhases": [
+          "before",
+          "now"
+        ],
+        "suggestion": true
+      },
+      {
+        "id": "ref-adl-dress",
+        "source": {
+          "fieldId": "bi.adl",
+          "domainId": "adl.dress"
+        },
+        "topicIds": [
+          "t-dressing"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "showPhases": [
+          "before",
+          "now"
+        ],
+        "suggestion": true
+      },
+      {
+        "id": "ref-adl-grooming",
+        "source": {
+          "fieldId": "bi.adl",
+          "domainId": "adl.grooming"
+        },
+        "topicIds": [
+          "t-hygiene"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "showPhases": [
+          "before",
+          "now"
+        ],
+        "suggestion": true
+      },
+      {
+        "id": "ref-adl-aids",
+        "source": {
+          "fieldId": "bi.adl",
+          "part": "aids"
+        },
+        "topicIds": [
+          "t-activity",
+          "t-safety"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "showPhases": [
+          "before",
+          "now"
+        ],
+        "suggestion": true
+      },
+      {
+        "id": "ref-adl-environment",
+        "source": {
+          "fieldId": "bi.adl",
+          "part": "aids.environment"
+        },
+        "topicIds": [
+          "t-safety",
+          "t-activity"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "showPhases": [
+          "before",
+          "now"
+        ],
+        "suggestion": true
+      },
+      {
+        "id": "ref-lifestyle",
+        "source": {
+          "fieldId": "bi.lifestyle"
+        },
+        "topicIds": [
+          "t-nutrition",
+          "t-sleep",
+          "t-activity",
+          "t-understanding",
+          "t-role"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "suggestion": true
+      },
+      {
+        "id": "ref-family",
+        "source": {
+          "fieldId": "bi.familySupport"
+        },
+        "topicIds": [
+          "t-role",
+          "t-coping"
+        ],
+        "mode": "readOnly",
+        "status": "draft",
+        "collapsedByDefault": true,
+        "sensitivity": "sensitive",
+        "noticeId": "n-family",
+        "suggestion": true
+      }
+    ]
+  },
+  "notices": [
+    {
+      "id": "n-pii",
+      "scope": "global",
+      "text": "氏名・住所・生年月日・患者番号など、個人を特定できる情報は入力しません。"
+    },
+    {
+      "id": "n-sensitive",
+      "scope": "topic",
+      "topicIds": [
+        "t-sexuality",
+        "t-values",
+        "t-role"
+      ],
+      "text": "必要な場合のみ、本人が話した範囲で。具体的な内容や金額は書きません。",
+      "fieldIds": [
+        "bi.familySupport"
+      ]
+    },
+    {
+      "id": "n-lab",
+      "scope": "topic",
+      "topicIds": [
+        "t-nutrition",
+        "t-temperature",
+        "t-breathing"
+      ],
+      "text": "検査値や測定値は1つだけで判断せず、症状や経過と合わせて考えます。基準は資料や施設で異なります。"
+    },
+    {
+      "id": "n-informant",
+      "scope": "stage",
+      "stageIds": [
+        "collect"
+      ],
+      "text": "本人以外から聞いた情報は、情報源(家族・看護師・他職種・記録など)を付けます。S/Oの分け方は、学校の記録ルールに従います。"
+    },
+    {
+      "id": "n-confirm",
+      "scope": "global",
+      "text": "考えた内容は、教科書・講義資料・指導者・教員で確認します。急ぎの判断は、すぐ指導者や担当看護師に相談します。"
+    },
+    {
+      "id": "n-basic-pii",
+      "scope": "basicInfo",
+      "text": "氏名・住所・生年月日・患者番号・施設名・病棟名・担当者名・具体的な日付は書きません。日付は「入院◯日目」「◯年前」で書きます。"
+    },
+    {
+      "id": "n-basic-combo",
+      "scope": "basicInfo",
+      "text": "年代・病名・職業・地域などは、組み合わせると本人が特定されることがあります。具体的に書きすぎないようにします。"
+    },
+    {
+      "id": "n-basic-optional",
+      "scope": "basicInfo",
+      "text": "空欄のままでも次へ進めます。「なし」と「不明」は、分けて選びます。"
+    },
+    {
+      "id": "n-age-exact",
+      "scope": "field",
+      "fieldIds": [
+        "bi.ageExact"
+      ],
+      "text": "具体的な年齢は、年代・発達段階だけでは足りないときだけ入力します。生年月日は書きません。年齢は、地域・職業・学校名・珍しい病名などと組み合わせると、個人が特定されることがあります。"
+    },
+    {
+      "id": "n-allergy",
+      "scope": "field",
+      "fieldIds": [
+        "bi.allergy",
+        "bi.adverseReaction"
+      ],
+      "text": "ここは、本人の申告や記録にあることを整理する欄です。アプリは、医学的な分類や、使ってよいかの判断をしません。最新の情報は、指導者・担当看護師に確認します。"
+    },
+    {
+      "id": "n-adl",
+      "scope": "field",
+      "fieldIds": [
+        "bi.adl"
+      ],
+      "text": "ADLの段階の分け方は、学校・施設の記録方法に合わせられます。このアプリは点数を計算せず、良し悪しの判定もしません。"
+    },
+    {
+      "id": "n-family",
+      "scope": "field",
+      "fieldIds": [
+        "bi.familySupport"
+      ],
+      "text": "家族のことは、必要な範囲で、本人や家族が話してくれた内容に限って書きます。名前や連絡先は書きません。「同居の家族あり」「日中は一人」のように書きます。"
+    },
+    {
+      "id": "n-free-text",
+      "scope": "allFreeText",
+      "text": "自由記述の欄には、氏名・住所・電話番号・日付などを書かないでください。該当しそうな表現があると注意を表示します(完全な検出ではありません)。"
+    },
+    {
+      "id": "n-storage",
+      "scope": "global",
+      "showAt": [
+        "home",
+        "summary"
+      ],
+      "text": "入力内容は、この端末のブラウザ内に保存しようとします。保存の状態は画面に表示します。ブラウザのデータ削除、端末の変更、プライベートモードなどで、内容が消えることがあります。ほかの端末とは同期されません。残したい内容は、まとめ画面からコピーして控えてください。"
+    },
+    {
+      "id": "n-storage-failed",
+      "scope": "global",
+      "showAt": [
+        "onSaveFailure"
+      ],
+      "text": "保存できませんでした。この画面を閉じると、入力内容が失われる可能性があります。まとめ画面からコピーして控えてください。"
+    },
+    {
+      "id": "n-activity-circulation",
+      "scope": "topic",
+      "topicIds": [
+        "t-activity"
+      ],
+      "text": "胸部不快感、急な息切れ、強いめまい、冷汗、意識や反応の変化など急な症状がある場合は、学生だけで判断・観察を続けず、直ちに指導者・担当看護師へ報告します。測定や活動は施設の手順と指示に従います。"
+    }
+  ],
+  "changeLog": [
+    {
+      "version": "0.2.3-draft",
+      "changes": [
+        "基礎情報とテーマの参照関係を basicInfo.references に集約(提案扱い)",
+        "内服薬・使用薬剤(薬剤すべて)と治療内容(薬剤以外)の境界を明記",
+        "入院後の経過を時系列(timeline)に限定",
+        "既往歴・手術歴は別項目で維持",
+        "ADL7領域に定義と境目を追加。入院前・現在を各テーマから参照",
+        "未入力・未確認・不明・あり・なしを entryStates に統一",
+        "家族構成・支援をセンシティブに。自由記述欄すべてに個人情報の注意(piiGuard)",
+        "step3Slotや領域のテーマ対応を、references/referenceScopesへ一本化"
+      ]
+    },
+    {
+      "version": "0.2.4-draft",
+      "changes": [
+        "選んだ枠組みに対応項目のないテーマを「ほかの観点」として出す方針(frameworkCoveragePolicy)を追加",
+        "基礎情報と重複していたテーマのヒント9件を、追加の観察・詳細の書き方に変更(refersBasicInfoで基礎情報を参照)",
+        "STEP3の7項目の参照を、STEP2(意味づけ)にも拡張",
+        "家族構成・支援を全テーマの参照から外し、役割・ストレス対処のテーマでのみ既定で折りたたみ表示",
+        "保存についての注意文(n-storage、n-storage-failed)を追加",
+        "個人情報の注意(piiGuard)を、すべての自由記述の入力に適用する方針(inputPolicy)を追加"
+      ]
+    },
+    {
+      "version": "0.2.5-draft",
+      "changes": [
+        "状態表現を統一(status: draft/reviewed/confirmed と suggestion の2軸)。tentative/suggested/proposedと、部分ごとの○○Statusを整理",
+        "STEP5を5a(看護問題の整理)と5b(観察・援助の方向)に定義。看護問題0件でも5bへ進める",
+        "flow を追加(ホーム→枠組み選択→基礎情報→STEP1〜5→まとめ)。準備とまとめは進捗バーの外",
+        "displayRules を追加(共通質問・テーマ別質問・ヒントの表示先、levelの使い方)",
+        "テーマ別の質問のうち、予測17件・確認・観察15件・原因2件の文を書き分け"
+      ]
+    },
+    {
+      "version": "0.2.6-draft",
+      "changes": [
+        "呼吸の収集ヒントに努力性呼吸や姿勢による変化などの観察視点を追加",
+        "食事・水分・栄養の収集ヒントに嚥下のしにくさ、むせ、悪心・嘔吐などを追加",
+        "安全の収集・解釈ヒントに感染に関連する観察情報と感染予防の確認視点を追加(具体的な判断は施設の指示・指導者確認を前提)",
+        "健康の理解・管理・学習の方向づけ質問を、知識不足を前提としない表現に変更",
+        "感覚・認知・痛みの収集・解釈ヒントに痛みの性質と増悪・軽減要因を追加",
+        "性・生殖のヒントで、本人の発言(S)と観察した反応(O)を区別",
+        "classifyの表示先をSTEP3に統一するため、STEP1のalsoAvailable設定を削除"
+      ]
+    },
+    {
+      "version": "0.2.7-draft",
+      "changes": [
+        "ADLの簡易段階案に「見守り」を追加し、自立・見守り・一部介助・全介助の区別を明文化",
+        "ADLの段階選択時の記録ポイントと、学校・施設基準を優先する注意を追加"
+      ],
+      "status": "draft",
+      "note": "評価尺度として確定したものではない。教員・実習施設の確認が必要。"
+    },
+    {
+      "version": "0.2.8-draft",
+      "changes": [
+        "ADLに領域ごとの介助者選択と、入院前・現在別の補助具・環境欄を実装するための入力仕様を整理",
+        "各思考段階に初心者向けの具体的な確認ガイドを追加。事実と推測の区別、未確認の扱い、予測の不確実性を明示"
+      ],
+      "status": "draft",
+      "note": "質問・ガイド・ADL入力仕様は草案。教科書・学校・実習施設・教員の確認が必要。"
+    },
+    {
+      "version": "0.2.9-draft",
+      "changes": [
+        "基礎情報とテーマの参照表示を連携し、入力済みのADL領域・介助者・補助具・環境を該当テーマ内で参照できるようにした",
+        "参照先の入力欄が存在しないIADL服薬管理の参照定義を削除し、未実装の情報が表示される設計上のずれを解消",
+        "スマートフォンでのタップ領域とキーボードフォーカス表示を改善"
+      ],
+      "status": "draft",
+      "note": "参照関係・UIは草案。教員・実習施設の確認が必要。"
+    },
+    {
+      "version": "0.2.10-draft",
+      "changes": [
+        "まとめ画面に7段階ごとの入力状況と未入力質問一覧を追加。各段階から該当STEPへ戻れるようにした",
+        "入力状況は完成度の採点ではなく振り返りの目安であることを明記",
+        "ADLの尺度IDだけが保存されている空状態を、基礎情報の入力済み件数に含めない"
+      ],
+      "status": "draft",
+      "note": "入力状況は学習支援用の目安。選択中の枠組みを集計し、未入力・未確認・該当なしを混同しない。空欄を誤りや未達成と判定せず、看護問題がない場合はSTEP5aを空欄で進められる。"
+    },
+    {
+      "version": "0.2.11-draft",
+      "changes": [
+        "既往歴・手術歴・内服薬・アレルギー・副作用歴に「あり／なし／不明／未確認」の確認状態を追加。未入力とは区別して保存",
+        "未確認にした基礎情報とADL項目をSTEP5bの追加情報収集欄へ転記できるようにした",
+        "まとめ画面に確認状態の一覧を追加し、未入力・未確認・不明・なしを区別"
+      ],
+      "status": "draft",
+      "note": "確認状態は学生の情報整理用。記録・医療判断は指導者・施設のルールを優先する。"
+    },
+    {
+      "version": "0.2.14-draft",
+      "changes": [
+        "参考書の書誌情報を出版社・国立国会図書館の公開情報で照合し、正式書名・出版社・第1版・発行年・ISBNを登録"
+      ],
+      "status": "draft",
+      "note": "確認したのは書誌情報のみ。質問・ヒントと参考書本文の対応関係や臨床内容は未確認。"
+    },
+    {
+      "version": "0.2.15-draft",
+      "changes": [
+        "活動・動きのテーマに、安静時／活動時の循環反応、動悸・胸部不快感・めまい、浮腫・末梢冷感などの観点を追加",
+        "活動テーマの質問を、ADLだけでなく循環・活動時反応も含めて考えられる表現に調整",
+        "急な症状の際は学生だけで判断せず、直ちに指導者・担当看護師へ報告する注意を追加"
+      ],
+      "status": "draft",
+      "note": "循環器系の情報を独立テーマとして増やすのではなく、ゴードンの活動・運動パターン等と重なる活動テーマの観点を補強した。臨床内容と学校・施設での記録方法は教員・指導者による確認が必要。"
+    },
+    {
+      "version": "0.2.16-draft",
+      "date": "2026-11-04",
+      "changes": [
+        "活動・動きの情報収集で重複していた脈拍・血圧の観察項目を統合し、SpO2を含む観察項目として整理",
+        "活動時の数値変化と本人の自覚症状を照合し、数値だけで安全性を判断しない視点を明確化"
+      ]
+    },
+    {
+      "version": "0.2.18-draft",
+      "date": "2026-11-04",
+      "changes": [
+        "活動・動きに脈拍リズムと体位変換時の症状・血圧変化の観察視点を追加(必要時・指導者や施設の指示下)",
+        "排泄に切迫感・失禁・夜間排泄・排泄時症状の確認視点を追加",
+        "食事・水分・栄養に嚥下に関する観察視点を具体化し、学生だけで安全性を判断しない注意を追加",
+        "安全のリスクを転倒・感染・管類に分けて整理する視点を追加",
+        "感覚・認知・痛みに痛みの経過と生活への影響を整理する視点を追加"
+      ],
+      "status": "draft",
+      "note": "質問数は増やさず、収集・解釈ヒントを補強。臨床内容の妥当性と学校・施設での運用は教員・指導者の確認が必要。"
+    },
+    {
+      "version": "0.2.19-draft",
+      "date": "2026-11-04",
+      "changes": [
+        "感覚・認知・痛みの痛みに関する情報収集・解釈ヒントの重複を整理し、部位・性質・経過・増悪／軽減要因・生活への影響を一連で確認できるよう統合"
+      ],
+      "status": "draft",
+      "note": "内容の整理のみ。臨床内容の妥当性と学校・施設での運用は教員・指導者の確認が必要。"
+    },
+    {
+      "version": "0.2.20-draft",
+      "date": "2026-11-04",
+      "changes": [
+        "感覚・認知・痛みの痛み情報を、本人の主観的な訴え(S)と観察できた反応(O)に整理。重複していた本人の痛み情報を統合。"
+      ]
+    }
+  ],
+  "inputPolicy": {
+    "status": "draft",
+    "piiGuard": {
+      "apply": true,
+      "guard": "warn",
+      "appliesTo": [
+        "basicInfo(すべての自由記述)",
+        "テーマの情報カード(本文・メモ)",
+        "各段階・テーマの質問への回答欄",
+        "ownQuestionsの回答欄",
+        "看護問題・援助の方向性の入力欄"
+      ],
+      "noticeIds": [
+        "n-pii",
+        "n-free-text"
+      ],
+      "note": "日付・電話番号・郵便番号・氏名らしい表現などを簡易に検知して注意する。検知は完全ではない。質問ごとには指定せず、この方針をすべての自由記述の入力に適用する。"
+    }
+  },
+  "statusPolicy": {
+    "status": {
+      "values": [
+        "draft",
+        "reviewed",
+        "confirmed"
+      ],
+      "current": "draft",
+      "meaning": "内容の成熟度。statusが書かれていない要素は、meta.status(ファイル全体)に従う。",
+      "confirmRule": "confirmed にできるのは、原本確認と教員の確認が済んだものだけ。"
+    },
+    "suggestion": {
+      "type": "boolean",
+      "meaning": "true は、学生が確認・変更できる提案(参照関係・枠組みの対応・既定値など)。内容の成熟度(status)とは別の軸。"
+    },
+    "keptSeparate": [
+      "sources[].verified(出典の原本確認)",
+      "needsReview(個別の見直しが必要)",
+      "sensitivity(扱いの注意度)"
+    ],
+    "replaces": "tentative / suggested / proposed は使わない。部分ごとの○○Statusは、ファイル全体が草案の間は削除した。"
+  }
+}
