@@ -1,0 +1,14 @@
+看護実習ナビ 修正版
+
+変更点
+- sitemap.xml を公開ページ一覧に更新
+- robots.txt に Sitemap URL を追加
+- .nojekyll を追加
+- favicon の参照先を assets/favicon.svg から favicon.svg に修正
+- 各公開ページに canonical / og:url / Twitter Card を追加
+- 404.html に noindex を追加
+
+注意
+GitHub Pages 反映後、Search Console のサイトマップ再送信は
+sitemap.xml
+を入力してください（URLプレフィックス型プロパティの場合）。

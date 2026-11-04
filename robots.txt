@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://ai19510to-cmyk.github.io/nursing-assessment-navi/sitemap.xml
