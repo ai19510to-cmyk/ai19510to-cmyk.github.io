@@ -373,7 +373,7 @@ function downloadInstructorList(){
 
 function renderHome(){
  return `<div class="hero"><div class="eyebrow">NURSING THINKING SUPPORT</div><h1>患者さんの情報を、<br>自分の考えにつなげる。</h1><p>情報を集めるところから、意味づけ・関連づけ・予測・看護の方向性まで。考える順番を整理するための学習ツールです。</p></div>
- <div class="notice warning"><strong>試作版・草案コンテンツ</strong><br>このツールは診断や治療の判断、提出用記録の自動作成を行いません。内容は教科書・講義資料・指導者・教員に確認してください。実在する患者さんを特定できる情報は入力しないでください。</div>
+ <div class="notice warning"><strong>利用上の注意</strong><br>このツールは診断や治療の判断、提出用記録の自動作成を行いません。内容は教科書・講義資料・指導者・教員に確認してください。実在する患者さんを特定できる情報は入力しないでください。</div>
  <div class="panel"><h2>新しいアセスメントを始める</h2><p class="muted">枠組みは後から変更できます。基礎情報も空欄のまま進められます。</p><div class="actions"><button onclick="setScreen('framework')">はじめる</button><button class="secondary" onclick="setScreen('summary')">前回の入力を見る</button></div></div>
  <div class="panel"><h3>5つのSTEP</h3><ol><li>現在、何が起きている?</li><li>基準や普段の状態と比べて、どう違う?</li><li>なぜ起きている?</li><li>このままだと何が起きる?</li><li>看護として何を見る?</li></ol></div>
  <div class="panel"><h3>データのバックアップ</h3><p class="small muted">入力内容をJSONファイルとして保存・復元できます。ファイルは自分で安全に管理してください。</p><div class="actions"><button class="secondary" onclick="exportData()">入力データを書き出す</button><button class="secondary" onclick="document.getElementById('importFile').click()">バックアップを読み込む</button><input id="importFile" type="file" accept=".json,application/json" hidden onchange="importData(this)"></div><p id="piiNotice" class="small muted" role="status">個人を特定できる情報は入力しないでください。</p></div>
