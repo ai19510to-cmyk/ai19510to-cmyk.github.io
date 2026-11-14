@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アセスメント思考チェック｜看護実習ナビ</title>
+<meta name="description" content="看護実習のアセスメントで、情報収集から意味づけ、関連づけ、影響、看護上の課題まで考える順番を確認できるチェックツールです。">
+<style>
+:root{--bg:#f7faf9;--card:#fff;--text:#24322f;--muted:#66736f;--main:#2f7d67;--line:#dce7e3;--soft:#edf7f3}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;color:var(--text);background:var(--bg);line-height:1.8}
+a{color:#21604f}.container{width:min(920px,calc(100% - 32px));margin:auto}
+header{background:#fff;border-bottom:1px solid var(--line)}.header-inner{min-height:64px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;text-decoration:none;color:var(--text)}main{padding:34px 0 56px}
+.hero,.item,.next,.result{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.hero{background:linear-gradient(135deg,#eef8f4,#fff)}
+.eyebrow{display:inline-block;background:var(--main);color:#fff;border-radius:999px;padding:3px 12px;font-size:.8rem;font-weight:700}
+h1{font-size:clamp(1.7rem,4vw,2.35rem);line-height:1.35;margin:14px 0 12px}h2{font-size:1.25rem;margin:0 0 8px}
+.lead,.hint{color:var(--muted)}.notice{margin-top:18px;background:#fff8e8;border:1px solid #f0dfaa;border-radius:12px;padding:13px;font-size:.92rem}
+.progress-wrap{margin:26px 0 16px}.progress-label{display:flex;justify-content:space-between;margin-bottom:8px;font-size:.9rem}.progress{height:10px;background:#dfeae6;border-radius:999px;overflow:hidden}.progress>div{height:100%;width:0;background:var(--main);transition:.25s}
+.check-list{display:grid;gap:14px}.item.checked{border-color:var(--main);background:#fbfffd}.item-top{display:flex;gap:14px;align-items:flex-start}
+input[type=checkbox]{width:24px;height:24px;margin:4px 0 0;accent-color:var(--main);flex:none}.step{font-size:.8rem;font-weight:800;color:var(--main)}.question{font-weight:800;font-size:1.05rem;margin:2px 0 4px}.hint{margin:0;font-size:.93rem}
+.thinking{margin-top:13px;padding:12px 14px;background:var(--soft);border-radius:12px;font-size:.92rem}.thinking strong{color:#21604f}
+.result{display:none;margin-top:24px;background:#e9f7f1;border-color:#bfe0d2}.result.show{display:block}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}button,.button{border:none;border-radius:12px;padding:12px 16px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none}.primary{background:var(--main);color:#fff}.secondary{background:#fff;color:var(--text);border:1px solid var(--line)}
+.next{margin-top:26px}.next ul{margin:10px 0 0;padding-left:1.2em}footer{padding:24px 0 40px;color:var(--muted);font-size:.85rem}
+@media(max-width:600px){.container{width:min(100% - 24px,920px)}main{padding-top:22px}.hero,.item,.next,.result{padding:18px}}
+</style>
+</head>
+<body>
+<header><div class="container header-inner"><a class="brand" href="index.html">看護実習ナビ</a><a href="index.html">← トップへ</a></div></header>
+<main><div class="container">
+<section class="hero">
+<span class="eyebrow">思考整理ツール</span>
+<h1>アセスメント思考チェック</h1>
+<p class="lead">「何から考えればいいか分からない」ときに、アセスメントまでの思考の順番を確認するためのチェックツールです。答えを自動で作るものではなく、自分の考えを整理するために使います。</p>
+<div class="notice"><strong>注意：</strong>このツールは診断や治療の判断、提出用記録の自動作成を行いません。実在する患者さんを特定できる情報は入力しないでください。</div>
+</section>
+
+<div class="progress-wrap"><div class="progress-label"><span>考えたステップ</span><strong id="count">0 / 5</strong></div><div class="progress"><div id="bar"></div></div></div>
+
+<section class="check-list">
+<article class="item"><div class="item-top"><input type="checkbox"><div><div class="step">STEP 1</div><div class="question">必要な情報を確認した？</div><p class="hint">情報を集めること自体が目的ではなく、「患者さんの状態を理解するために何を知りたいか」を考えます。</p><div class="thinking"><strong>考えるヒント：</strong>今知りたいのは何？ その情報は何を理解するために必要？</div></div></div></article>
+<article class="item"><div class="item-top"><input type="checkbox"><div><div class="step">STEP 2</div><div class="question">集めた情報の意味を考えた？</div><p class="hint">情報を書き並べるだけで終わらず、「この情報は何を意味しているのか」を考えます。</p><div class="thinking"><strong>考えるヒント：</strong>普段と比べてどう？ なぜこの状態になっている可能性がある？</div></div></div></article>
+<article class="item"><div class="item-top"><input type="checkbox"><div><div class="step">STEP 3</div><div class="question">他の情報との関連を考えた？</div><p class="hint">疾患、症状、治療、生活状況などを別々に見るだけでなく、関係を探します。</p><div class="thinking"><strong>考えるヒント：</strong>他に関連しそうな情報は？ 原因や影響としてつながるものは？</div></div></div></article>
+<article class="item"><div class="item-top"><input type="checkbox"><div><div class="step">STEP 4</div><div class="question">患者さんへの影響を考えた？</div><p class="hint">身体の状態だけでなく、生活や本人の困りごと、できていること・強みも含めて考えます。</p><div class="thinking"><strong>考えるヒント：</strong>生活にどんな影響がある？ 本人はどう感じている？ 活かせる強みはある？</div></div></div></article>
+<article class="item"><div class="item-top"><input type="checkbox"><div><div class="step">STEP 5</div><div class="question">この先の経過と看護上の課題を考えた？</div><p class="hint">いきなり問題名を探すのではなく、今の状態が続いた場合や変化した場合を考えて、看護として何に注目するかを整理します。</p><div class="thinking"><strong>考えるヒント：</strong>このままではどうなる可能性がある？ 今後注意して見たいことは？ 支援できる方向は？</div></div></div></article>
+</section>
+
+<section class="result" id="result"><h2>5つの視点を確認できました</h2><p>ここまで考えた内容を、そのまま答えにする必要はありません。もう一度情報に戻りながら、自分なりの根拠や関連を整理してみましょう。</p><div class="actions"><a class="button primary" href="demo.html">思考整理ツールを使う</a><a class="button secondary" href="nursing-assessment.html">アセスメントの記事を読む</a></div></section>
+
+<section class="next"><h2>迷ったときの関連ページ</h2><ul><li><a href="assessment-cannot-write.html">アセスメントが書けないときの考え方</a></li><li><a href="information-gathering-cannot-decide.html">何の情報を集めればいいか分からないとき</a></li><li><a href="cannot-connect-nursing-information.html">情報同士をつなげられないとき</a></li><li><a href="cannot-identify-nursing-problems.html">看護問題が思いつかないとき</a></li></ul><div class="actions"><button class="secondary" id="reset">チェックをやり直す</button></div></section>
+</div></main>
+<footer><div class="container">看護実習ナビ｜アセスメントの思考を支える学習ツール</div></footer>
+<script>
+const boxes=[...document.querySelectorAll('input[type=checkbox]')],count=document.getElementById('count'),bar=document.getElementById('bar'),result=document.getElementById('result');
+function update(){const n=boxes.filter(b=>b.checked).length;count.textContent=`${n} / ${boxes.length}`;bar.style.width=`${n/boxes.length*100}%`;boxes.forEach(b=>b.closest('.item').classList.toggle('checked',b.checked));result.classList.toggle('show',n===boxes.length)}
+boxes.forEach(b=>b.addEventListener('change',update));document.getElementById('reset').onclick=()=>{boxes.forEach(b=>b.checked=false);update();window.scrollTo({top:0,behavior:'smooth'})};update();
+</script>
+</body></html>
